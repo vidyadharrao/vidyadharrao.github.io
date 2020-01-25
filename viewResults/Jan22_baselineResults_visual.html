@@ -1,0 +1,141 @@
+<html>
+<title>Baseline Methods</title> 
+<head> 
+<link href="StyleSheets/style.css" rel="stylesheet" type="text/css" /> 
+<style>
+.highlight{
+background:#222 !important;
+}
+</style>
+</head> 
+<body><center> 
+<br> 
+<br>
+<table> 
+<?php
+$contents = file_get_contents('./NewResults/jan22/naiveprecision.txt');
+$naiveprecision = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/naiveentropy.txt');
+$naiveentropy = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/naiveharmonic.txt');
+$naiveharmonic = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/naivemean.txt');
+$naivemean = explode(':', $contents);
+$i=0;
+$j=0;
+?>
+
+<tr><td><h2>Baselines</h2>
+	<td><b>Animal</b></td>
+	<td><b>Bottle</b></td>
+	<td><b>Flower</b></td>
+	<td><b>Furniture</b></td>
+	<td><b>Geography</b></td>
+	<td><b>Music</b></td>
+	<td><b>Vehicle</b></td>
+
+<tr><td><table> <tr><td colspan=2><h5 align="center">Naive </td><td colspan=2> h:<?php echo $naivemean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table > 
+		<tr>
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/animal-naive.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table > 
+		<tr>
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/bottle-naive.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr>
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/flower-naive.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/furniture-naive.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/geography-naive.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/music-naive.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/vehicle-naive.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+</tr>
+
+		 
+<tr><td><table> <tr><td><h5 align="center">Rerank </td><td> h:<?php echo $naivemean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/animal-rerank.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/bottle-rerank.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/flower-rerank.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/furniture-rerank.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/geography-rerank.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/music-rerank.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/vehicle-rerank.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>
+
+<tr><td><table> <tr><td><h5 align="center">Greedy </td><td> h:<?php echo $naivemean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/animal-greedy.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/bottle-greedy.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/flower-greedy.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/furniture-greedy.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/geography-greedy.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/music-greedy.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/vehicle-greedy.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>	 
+<tr><td><table> <tr><td><h5 align="center">MMR </td><td> h:<?php echo $naivemean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/animal-mmr.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/bottle-mmr.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/flower-mmr.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/furniture-mmr.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/geography-mmr.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/music-mmr.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser_v.php?filename=NewResults/jan22/vehicle-mmr.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>		 
+</table>
+</body>
+</html> 
+

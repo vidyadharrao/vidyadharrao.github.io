@@ -1,0 +1,50 @@
+body,h5,h3,h3,h2,td {
+/*font-family:palatino;*/
+}
+.d1{
+position:absolute;
+text-align:center;
+border:1px solid #000;
+left:3%;
+width:30%;
+}
+.d2{
+text-align:center;
+border:1px solid #000;
+position:absolute;
+left:35%;
+width:30%;
+}
+.d3{
+text-align:center;
+border:1px solid #000;
+position:absolute;
+left:67%;
+width:30%;
+}
+td{
+font-size:11px; font-weight:bold;
+}
+.legends{
+position:absolute;
+left:3%;
+width:94%;
+font-size:11px;
+}
+.dcenter{
+text-align:center;
+border:1px solid #000;
+width:50%;
+}
+.dcenter2{
+text-align:center;
+border:1px solid #AAA;
+width:85%;
+}
+.dcenter2 td{
+font-weight:normal;
+font-size:12;
+}
+a:link {color: #4C787E; text-decoration: underline; }
+a:active {color: #4C787E; text-decoration: underline; }
+a:visited {color:#4C787E; text-decoration: underline; }

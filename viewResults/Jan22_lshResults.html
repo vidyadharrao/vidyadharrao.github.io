@@ -1,0 +1,167 @@
+<html> 
+<title>LSH Methods</title> 
+<head> 
+<link href="StyleSheets/style.css" rel="stylesheet" type="text/css" /> 
+<style>
+.highlight{
+background:#222 !important;
+}
+</style>
+</head> 
+<body>
+<?php
+$contents = file_get_contents('./NewResults/jan22/lshprecision.txt');
+$lshprecision = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/lshentropy.txt');
+$lshentropy = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/lshharmonic.txt');
+$lshharmonic = explode(':', $contents);
+$contents = file_get_contents('./NewResults/jan22/lshmean.txt');
+$lshmean = explode(':', $contents);
+$i=0;
+$j=0;
+?>
+<center> 
+<br> 
+<br>
+<table> 
+	
+<tr><td><h2>LSH Methods</h2> </td>
+	<td><b > Animal</b></td>
+	<td><b > Bottle</b></td>
+	<td><b > Flower</b></td>
+	<td><b > Furniture</b></td>
+	<td><b > Geography</b></td>
+	<td><b > Music</b></td>
+	<td><b > Vehicle</b></td>
+
+<tr><td><table> <tr><td><h5 align="center">Naive </td><td> H_avg:  <?php echo $lshmean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table > 
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+		<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/animal-lshnaive.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table > 
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/bottle-lshnaive.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/flower-lshnaive.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/furniture-lshnaive.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/geography-lshnaive.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/music-lshnaive.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/vehicle-lshnaive.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+</tr>
+
+		 
+<tr><td><table> <tr><td><h5 align="center">Rerank </td><td> H_avg:  <?php echo $lshmean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/animal-lshrerank.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/bottle-lshrerank.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/flower-lshrerank.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/furniture-lshrerank.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/geography-lshrerank.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/music-lshrerank.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/vehicle-lshrerank.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>
+
+<tr><td><table> <tr><td><h5 align="center">Greedy </td><td> H_avg:  <?php echo $lshmean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/animal-lshgreedy.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/bottle-lshgreedy.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/flower-lshgreedy.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/furniture-lshgreedy.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/geography-lshgreedy.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/music-lshgreedy.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/vehicle-lshgreedy.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>	 
+<tr><td><table> <tr><td><h5 align="center">MMR </td><td> H_avg:  <?php echo $lshmean[$j]; $j++; ?> </h5></td></tr></table></td>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/animal-lshmmr.txt&gt=GroundTruth/jan22/animal.txt"><img src="Icons/eye.png" width=28 height=28></a></table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/bottle-lshmmr.txt&gt=GroundTruth/jan22/bottle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/flower-lshmmr.txt&gt=GroundTruth/jan22/flower.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/furniture-lshmmr.txt&gt=GroundTruth/jan22/furniture.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/geography-lshmmr.txt&gt=GroundTruth/jan22/geography.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/music-lshmmr.txt&gt=GroundTruth/jan22/music.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+	
+	<td><table >
+		<tr><td colspan=2> P= <?php echo $lshprecision[$i] ?> </td><td colspan=2> E= <?php echo $lshentropy[$i] ?></td> </tr> <tr><td colspan=2> H= <?php echo $lshharmonic[$i]; $i++; ?> </td> 
+	<td style="vertical-align:middle;text-align:center;"><a href="Browser.php?filename=NewResults/jan22/vehicle-lshmmr.txt&gt=GroundTruth/jan22/vehicle.txt"><img src="Icons/eye.png" width=28 height=28></a> </table>
+
+</tr>		 
+</table>
+</body>
+</html> 
+

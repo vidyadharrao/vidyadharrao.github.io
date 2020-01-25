@@ -1,0 +1,1000 @@
+   14  vim front.html 
+   15  cd public_html/
+   16  ls
+   17  vim Duchenne.html 
+   18  echo "hi" > apple
+   19  sed -i 's/^/<input type="button" value="Exit" onclick="window.open('''',''_self'', '''');window.close();self.close();"></center>/' apple
+   20  sed -i 's/^/<input type="button" value="Exit" onclick="window.open('''',''_self'', '''');window.close();self.close();"><\/center>/' apple
+   21  vim apple 
+   22  echo "hi" > apple
+   23  sed -i 's/^/<input type="button" value="Exit" onclick="window.open(\'\',\'_self\', \'\');window.close();self.close();"><\/center>/' apple
+   24  sed -i 's/^/<input type="button" value="Exit" onclick="window.open\(\'\',\'_self\', \'\');window.close();self.close();"><\/center>/' apple
+   25  sed -i 's/^/<input type="button" value="Exit" onclick="window.open\(\'\',\'_self\', \'\'\);window.close();self.close();"><\/center>/' apple
+   26  sed -i 's/^/<input type="button" value="Exit" onclick="window.open\(\'\',\'_self\', \'\'\);window.close\(\);self.close\(\);"><\/center>/' apple
+   27  cat apple
+   28  sed -i "s/^/"''"/" apple
+   29  cat apple
+   30  sed -i "s/^/''/" apple
+   31  cat apple
+   32  echo "hi" > apple
+   33  cat apple
+   34  sed -i "s/^/<input type=\"button\" value=\"Exit\" onclick=\"window.open('','_self','');window.close();self.close();\"><\/center>/" apple
+   35  vim apple
+   36  vi mbecker/10_stretching/Manual_Stretching.html
+   37  vi becker/10_stretching/Manual_Stretching.html
+   38  vim Diseases/becker/10_stretching/Manual_Stretching.html
+   39  vim apple 
+   40  cd public_html/
+   41  cd Diseases
+   42  ls
+   43  rm -rf bkp
+   44  ls
+   45  rm apprm apple
+   46  ls
+   47  ls */*/*/* | grep ".html" | grep -v strengthen > allfiles
+   48  vim allfiles 
+   49  ls */*/*/* | grep ".HTML" 
+   50  ls */* | head -1
+   51  ls */*/* | head -1
+   52  ls */*/* | grep .html | grep -v strengthen > allfiles
+   53  vim allfiles 
+   54  ls */*/* | grep \.html | grep -v strengthen > allfiles
+   55  vim allfiles 
+   56  ls */*/* | sed -n '/.html$/p' | grep -v strengthen > allfiles
+   57  vim allfiles
+   58  head -1 allfiles 
+   59  vim becker/10_stretching/Manual_Stretching.html
+   60  vim `cat allfiles`
+   61  cat allfiles | xargs -i sed -i "s/<BODY LANG=\"en-IN\" TEXT=\"#000000\" DIR=\"LTR\">/<BODY LANG=\"en-IN\" TEXT=\"#000000\" DIR=\"LTR\"><center><input type=\"button\" value=\"Exit\" onclick=\"window.open('','_self','');window.close();self.close();\"><br><\/center>/" {}
+   62  head -1 allfiles 
+   63  vim becker/10_stretching/Manual_Stretching.html
+   64  vim `cat allfiles`
+   65  cat allfiles 
+   66  cat allfiles | head -4
+   67  vim becker/12_balance_and_gait_training/BALANCE__and_GAIT_TRAINING.html
+   68  vim addexit
+   69  bash addexit 
+   70  ls
+   71  ls */*/* | sed -n '/\.html$/p' | sed -n '/strengthening/p' >> Allstrengthening
+   72  vim Allstrengthening 
+   73  ls */*/* | sed -n '/_frames\.html$/p' > Allstrengthening
+   74  vim Allstrengthening 
+   75  vim `cat Allstrengthening `
+   76  ls
+   77  mv logo.png public_html/BigLogo.png
+   78  mv logo\ \(1\).png public_html/BigLogo.png 
+   79  cd public_html/
+   80  vim index.html 
+   81  cd introduction/
+   82  vim MUSCULAR_DYSTROPHY.html 
+   83  cd ..
+   84  vim Diagnosis.html 
+   85  vim index.html 
+   86  vim Home.html 
+   87  vim introduction/MUSCULAR_DYSTROPHY.html 
+   88  cd introduction/
+   89  ls
+   90  vim DISTAL_MUSCULAR_DYSTROPHY.html 
+   91  cd public_html/
+   92  cd introduction/
+   93  vim BECKER_MUSCULAR_DYSTROPHY.html 
+   94  vim BECKER_MUSCULAR_DYSTROPHY.html 
+   95  vim *.html
+   96  vim *.html
+   97  vim *.html + 999
+   98  cd ../Diseases
+   99  ls
+  100  vim allfiles 
+  101  head -1 allfiles 
+  102  vim becker/10_stretching/Manual_Stretching.html
+  103  cat allfiles | xargs -i sed -i "s/<\/BODY>/<center><input type=\"button\" value=\"Exit\" onclick=\"window.open('','_self','');window.close();self.close();\"><br><\/center><\/BODY>/" {}
+  104  tail -2 `cat allfiles` | head -12
+  105  tail -n 2 `cat allfiles` | head -12
+  106  find -iname "*_frames.html" | head -1
+  107  vim ./emery_dreiffus/11_strengthening_exercises/Emery-defrieus_strengthening_frames.html
+  108  cd congenital/
+  109  ls
+  110  rm 11_strengthening_exercises/ -rf
+  111  pwd
+  112  ls
+  113  pwd
+  114  find -iname *_frames.html
+  115  rm -rf 11_strengthening_exercises/
+  116  ls
+  117  cd 11_strengthening_exercises/
+  118  ls
+  119  rename docx\.html html *docx.html
+  120  ls
+  121  vim 3_upper-limb_strengthing_frames.html 
+  122  vim 4_lower-limb_strengthing_frames.html 
+  123  vim 1_FACIAL_EXERCISE.html 
+  124  sed -i 's/<IMG SRC=".*_m7b7455d3.gif">//g' *.html
+  125  vim *_frames.html
+  126  vim *_frames.html
+  127  vim shoulder.html 
+  128  vim *_frames.html
+  129  cd
+  130  cd public_html/
+  131  ls
+  132  vim `cat list`
+  133  vim `cat list`
+  134  chmod -R 755 GENERAL_TREATMENT/
+  135  cd GENERAL_TREATMENT/
+  136  vim *.html
+  137  sed 's/<IMG SRC="*m7b7455d3.gif">//g' *
+  138  cd public_html/
+  139  cd GENERAL_TREATMENT/
+  140  sed -i 's/<IMG SRC="*m7b7455d3.gif">//g' *.html
+  141  vim *.html
+  142  sed -i 's/<IMG SRC=".*_m7b7455d3.gif">//g' *.html
+  143  vim *.html
+  144  cd public_html/
+  145  ls
+  146  cat list 
+  147  ls introduction/*.html
+  148  ls introduction/*.html | wc -l
+  149  vim introduction/MUSCULAR_DYSTROPHY.html 
+  150  grep href.location *
+  151  grep location.href *
+  152  ls introduction/*.html | grep -v MUS
+  153  vim Congenital.html 
+  154  cd public_html/
+  155  ls
+  156  touch thanks.html
+  157  cp index.html thanks.html 
+  158  vim thanks.html 
+  159  vim index.html 
+  160  mv introduction/default.css introduction/default.css_
+  161  cp default.css introduction/
+  162  cd public_html/
+  163  vim index.html 
+  164  ls -R 
+  165  ls
+  166  grep "HeaderBar" *
+  167  grep "HeaderBar" * -l
+  168  vim Analysis.html 
+  169  sed -i 's/<a href="introduction/MUSCULAR_DYSTROPHY.html"><h5>Thanks/<a href="thanks.html"><h5>Thanks/' *
+  170  sed -i 's/<a href="introduction\/MUSCULAR_DYSTROPHY.html"><h5>Thanks/<a href="thanks.html"><h5>Thanks/' *
+  171  vim Diagnosis.html 
+  172  vim introduction/MUSCULAR_DYSTROPHY.html 
+  173  vim default.css 
+  174  vim Home.html 
+  175  vim thanks.html 
+  176  vim index.html 
+  177  vim thanks.html 
+  178  vim default.css 
+  179  cp default.css introduction/
+  180  vim index.html 
+  181  vim default.css 
+  182  vim thanks.html 
+  183  vim thanks.html 
+  184  vim thanks.html 
+  185  cp default.css introduction/
+  186  vim thanks.html 
+  187  vi introduction/MUSCULAR_DYSTROPHY.html 
+  188  vi Home.html 
+  189  vim introduction/MUSCULAR_DYSTROPHY.html 
+  190  vim Diagnosis.html 
+  191  vim Diagnosis.html 
+  192  vim questions.js 
+  193  vim Diagnosis.html 
+  194  vim Analysis.html 
+  195  sed -i 's/Emery-defrieus/Emery-dreifuss/g' *
+  196  vim Analysis.html 
+  197  vim Analysis.html 
+  198  vim questions.js 
+  199  vim Analysis.html 
+  200  vim questions.js 
+  201  cd GENERAL_TREATMENT/
+  202  ls
+  203  ls *.gif
+  204  vim General.html 
+  205  cp General.html ..
+  206  ls
+  207  rm *
+  208  ls
+  209  ls
+  210  ls
+  211  vim *.html
+  212  sed -i 's/<IMG SRC=".*_m7b7455d3.gif">//g' *.html
+  213  cd public_html/
+  214  vim thanks.html 
+  215  vim questions.js 
+  216  vim Analysis.html 
+  217  grep -n "Probable Diagnosis" *
+  218  vim questions.js +25
+  219  cd public_html/
+  220  vim Home.html 
+  221  ls
+  222  cd public_html/
+  223  ls
+  224  vim Home.html 
+  225  vim Home.html 
+  226  rm .Home.html.swp 
+  227  vim Home.html 
+  228  cd public_html/
+  229  vim Home.html 
+  230  vim default.css 
+  231  vim Home.html 
+  232  cp ../watermark.png .
+  233  vim Home.html 
+  234  vim Diagnosis.html 
+  235  vim Analysis.html 
+  236  vim default.css 
+  237  vim Analysis.html 
+  238  ls ..
+  239  cp References.html public_html/
+  240  cd public_html/
+  241  grep -l "References"
+  242  grep -l "References" *
+  243  vim Analysis.html 
+  244  sed -i 's/"introduction/MUSCULAR_DYSTROPHY.html"><h5>References/"References.html"><h5>References/' *.html
+  245  sed -i 's/"introduction\/MUSCULAR_DYSTROPHY.html"><h5>References/"References.html"><h5>References/' *.html
+  246  cat index.html >> References.html 
+  247  vim References.html 
+  248  vim introduction/MUSCULAR_DYSTROPHY.html 
+  249  vim thanks.html 
+  250  ls
+  251  ls
+  252  rm -rf Diseases_old/
+  253  ls
+  254  rm 2 apple
+  255  rm -rf bkp
+  256  ls
+  257  du -hs .
+  258  python
+  259  vim 1.c
+  260  gcc 1.c
+  261  ./a.out
+  262  bf
+  263  ssh root@10.2.16.6
+  264  ssh root@10.2.16.225
+  265  mkdir spoj
+  266  cd spoj/
+  267  ls
+  268  man ascii
+  269  python
+  270  mv 12thApril-900.jpg public_html/
+  271  cd public_html/
+  272  ls
+  273  wget http://www.moviesonline.ca/wp-content/uploads/2010/10/cartman.jpg
+  274  export http_proxy="proxy.iiit.ac.in:8080
+  275  "
+  276  wget http://www.moviesonline.ca/wp-content/uploads/2010/10/cartman.jpg
+  277  wget http://www.moviesonline.ca/wp-content/uploads/2010/10/cartman.jpg
+  278  export http_proxy="http://proxy.iiit.ac.in:8080"
+  279  wget http://www.moviesonline.ca/wp-content/uploads/2010/10/cartman.jpg
+  280  convert cartman.jpg cartman.eps
+  281  cp 1.tex 1tex.html
+  282  vim 1tex.html 
+  283  ls
+  284  cp 1.tex 1tex.html 
+  285  vim 1tex.html 
+  286  elinks 
+  287  elinks
+  288  elinks
+  289  ps aux
+  290  elinks
+  291  elinks
+  292  pkl elinks
+  293  ps aux 
+  294  ps aux | grep elinks
+  295  kill -9 4777
+  296  ps aux | grep elinks
+  297  ps aux | grep elinks
+  298  ps aux | grep elinks
+  299  ps aux | grep elinks
+  300  elinks intranet.iiit.ac.in
+  301  ping isas.iiit.ac.in
+  302  ssh siddhartha_c@web.iiit.ac.in
+  303  ssh siddhartha_c@mirage.iiit.ac.in
+  304  ping mirage.iiit.ac.in
+  305  echo $http_prosy
+  306  echo $http_proxy
+  307  ssh siddhartha_c@mirage.iiit.ac.in
+  308  elinks intranet.iiit.ac.in
+  309  cat id_rsa.pub >> .ssh/authorized_keys 
+  310  ls
+  311  svn-admin create Google
+  312  svnadmin create Google
+  313  ls
+  314  cd Google/
+  315  ls
+  316  pwd
+  317  cd ..
+  318  svnadmin create Scripts
+  319  cd Scripts/
+  320  pwd
+  321  pwd
+  322  ls
+  323  svnadmin create Results
+  324  ls
+  325  cd Google/
+  326  ls
+  327  cd ..
+  328  ls
+  329  mkdir GooglePages
+  330  cd Google
+  331  cd ../GooglePages/
+  332  svn co svn+ssh://siddhartha.chandra@localhost/research/ms2k7/cse/siddhartha.chandra/Results
+  333  ls
+  334  cd Results/
+  335  ls
+  336  ls
+  337  ls keyframes_PGM/*/* |wc -l
+  338  ls
+  339  cd public_html/GooglePages/
+  340  ls
+  341  ls keyframes_PGM/Train/*.jpg > Datasets/PGMTrain.txt 
+  342  ls keyframes_PGM/Val/*.jpg > Datasets/PGMVal.txt 
+  343  ls keyframes_PGMZN/Train/*.jpg > Datasets/PGMZNTrain.txt 
+  344  ls
+  345  cd public_html/
+  346  ls
+  347  mv index.html index.html_
+  348  ls *.php
+  349  find -iname "*.php"
+  350  vi 1.php
+  351  ls
+  352  cd ..
+  353  ls
+  354  cd GooglePages/
+  355  s
+  356  ls
+  357  cd re
+  358  cd Results/
+  359  ls
+  360  cd ..
+  361  ls
+  362  cd ..
+  363  ls
+  364  mv GooglePages/ public_html/
+  365  dc public_html/
+  366  pwd
+  367  dc
+  368  ls
+  369  cd public_html/
+  370  ls
+  371  cd GooglePages/
+  372  ls
+  373  mkdir Scripts
+  374  ls
+  375  cd Results/
+  376  ls
+  377  cd ..
+  378  ls
+  379  ls
+  380  vim drawbboxHollywoodimages.php 
+  381  ls
+  382  mkdir StyleSheets
+  383  mv style* StyleSheets/
+  384  ls
+  385  vim drawbboxHollywoodimages.php 
+  386  vim drawbboxHollywoodimages.php 
+  387  ls Results/
+  388  vim drawbboxHollywoodimages.php 
+  389  ls
+  390  mkdir Images
+  391  ls
+  392  ls
+  393  ls
+  394  ls
+  395  ls
+  396  ls keyframes/*/* | wc -l
+  397  ls keyframes/*/* | wc -l
+  398  ls keyframes/*/* | wc -l
+  399  ls keyframes/*/* | wc -l
+  400  ls keyframes/*/* | wc -l
+  401  ls keyframes/*/* | wc -l
+  402  ls keyframes/*/* | wc -l
+  403  ls keyframes/*/* | wc -l
+  404  ls keyframes/*/* | wc -l
+  405  ls
+  406  vim drawbboxHollywoodimages.php 
+  407  mv drawbboxHollywoodimages.php Browser.php
+  408  vim Browser.php 
+  409  mkdir Icons
+  410  wget http://images.findicons.com/files/icons/653/the_spherical/128/airplane.png
+  411  export http_proxy="proxy.iiit.ac.in:8080"
+  412  wget http://images.findicons.com/files/icons/653/the_spherical/128/airplane.png
+  413  mv airplane.png Icons/A.png
+  414  wget http://icons.iconarchive.com/icons/icons-land/points-of-interest/256/Bicycle-Green-icon.png
+  415  mv Bicycle-Green-icon.png Icons/B.png
+  416  ls
+  417  mkdir GroundTruth
+  418  vim Browser.php 
+  419  ls GroundTruth/
+  420  vim Browser.php 
+  421  ls GroundTruth/
+  422  vim Browser.php 
+  423  sed -i 's/ 1$//' GroundTruth/*
+  424  vim GroundTruth/*
+  425  sed -i 's/^/Val\//' GroundTruth/*
+  426  vim GroundTruth/*
+  427  sed -i 's/$/.jpg/' GroundTruth/*
+  428  vim GroundTruth/*
+  429  sed -i 's/ .jpg/.jpg/' GroundTruth/*
+  430  vim GroundTruth/*
+  431  vi Browser.php 
+  432  vim GroundTruth/aeroplaneTestPos.txt 
+  433  vi Browser.php 
+  434  vim GroundTruth/*
+  435  ls
+  436  vim Results/AirplaneRBMlevel1words_1000_S11PGM-result.txt
+  437  vi Browser.php 
+  438  ls
+  439  ls
+  440  ls
+  441  ls
+  442  ls
+  443  ls
+  444  ls
+  445  cd Results/
+  446  ls
+  447  svn update
+  448  cat *.AP
+  449  ls
+  450  cd ..
+  451  ls
+  452  scp sidd@robots.ox.ac.uk:WWW/index.html .
+  453  vim index.html 
+  454  ls
+  455  mkdir Datasets
+  456  ls
+  457  cp Browser.php Datasets.php
+  458  vim Datasets.php 
+  459  vim Datasets.php 
+  460  ls
+  461  ls
+  462  vim Results/*.txt
+  463  ls keyframes/Train/*.jpg > JPGTrain.txt
+  464  vim JPGTrain.txt 
+  465  ls keyframes/Val/*.jpg > JPGVal.txt
+  466  ls keyframes_PGM/Val/*.jpg > PGMVal.txt
+  467  ls keyframes_PGM
+  468  ls keyframes_PGM/Val/*.pgm > PGMVal.txt
+  469  ls keyframes_PGM/Train/*.pgm > PGMTrain.txt
+  470  ls keyframes_PGMZN/Train/*.pgm > PGMZNTrain.txt
+  471  ls keyframes_PGMZN/Val/*.pgm > PGMZNVal.txt
+  472  ls
+  473  ls *.tct
+  474  ls *.txt
+  475  mv *.txt Datasets
+  476  ls
+  477  vim Datasets.php 
+  478  vim Datasets.php 
+  479  convert
+  480  ls
+  481  ls
+  482  ls
+  483  ls
+  484  ls
+  485  ls
+  486  ls
+  487  ls
+  488  vim index.html 
+  489  wc -l GroundTruth/*
+  490  vim index.html 
+  491  ls
+  492  scp -r keyframes_PGM keyframes_PGMZN robin@10.2.16.200:
+  493  rm keyframes_PGMZN/ -rf
+  494  rm -rf keyframes_PGM
+  495  ls
+  496  sed -i 's/pgm/jpg/' Datasets/*
+  497  vim Datasets.php 
+  498  wget http://www.robots.ox.ac.uk/~sidd/TrackStatsRecall.html
+  499  ls
+  500  cp TrackStatsRecall.html Aug10_SiftVsRBM.html
+  501  vim index.html 
+  502  vim Aug10_SiftVsRBM.html 
+  503  ls Results/
+  504  ls Results/PRcurves/
+  505  vim Aug10_SiftVsRBM.html 
+  506  wget http://ctaar.rutgers.edu/images/Play_Icon.png
+  507  mv Play_Icon.png Icons/click.png
+  508  ls
+  509  vim Aug10_SiftVsRBM.html 
+  510  wget http://3.bp.blogspot.com/_V5ZomCV8h4M/TJD1bCIA2tI/AAAAAAAAAFg/WgXvraqQCy0/s1600/eye+icon.png
+  511  mv eye+icon.png Icons/eye.png
+  512  ls
+  513  vim Aug10_SiftVsRBM.html 
+  514  ls Results/*.txt
+  515  ls Results/*.txt -1
+  516  ls Results/*.AP -1
+  517  cat `ls Results/*.AP -1`
+  518  vim Aug10_SiftVsRBM.html 
+  519  ls
+  520  vim Datasets/PGMZNVal.txt 
+  521  ls keyframes_PGMZN/Val/*.jpg > Datasets/PGMZNVal.txt 
+  522  ls
+  523  vim Browser.php 
+  524  vim index.html 
+  525  vim Browser.php 
+  526  vim Datasets.php 
+  527  cd GroundTruth/
+  528  ls
+  529  vim aeroplaneTrainPos.txt 
+  530  vim aeroplaneTestPos.txt 
+  531  cat aeroplaneTrainPos.txt aeroplaneTestPos.txt | sort | uniq -d
+  532  ls
+  533  vim *
+  534  sed -i 's/Val/Train/' aeroplaneTrainPos.txt bicycleTrainPos.txt
+  535  cd ..
+  536  vim Datasets
+  537  vim Datasets.php 
+  538  ls
+  539  cd Google/
+  540  ls
+  541  cd ..
+  542  ls
+  543  cd public_html/GooglePages/
+  544  ls
+  545  cd Results/
+  546  ls
+  547  svn update
+  548  ls
+  549  svn update
+  550  svn update
+  551  ls
+  552  vim ../Aug10_SiftVsRBM.html 
+  553  chmod 755 PRcurves/*
+  554  ls
+  555  ls PRcurves/ | grep inear
+  556  ls PRcurves/ 
+  557  svn update
+  558  vim ../Aug10_SiftVsRBM.html 
+  559  ls Google/
+  560  cd public_html/GooglePages/
+  561  ls
+  562  cd Results/
+  563  ls
+  564  cd public_html/
+  565  cd GooglePages/Results/
+  566  ls
+  567  ls
+  568  svn update
+  569  ls *.html
+  570  mv Exp2.html ..
+  571  svn update
+  572  svn update
+  573  mv Exp2.html ..
+  574  gnuplot
+  575  ls
+  576  ls 
+  577  ls -1 *EXP2*AP > names
+  578  cat *EXP2*AP > APs
+  579  paste names APs | sed 's/\t/ /' > nameAPs
+  580  vim nameAPs 
+  581  sort -n -k1 nameAPs > sortedNames
+  582  vim sortedNames 
+  583  gnuplot
+  584  mv Variation.png ..
+  585  gnuplot
+  586  mv Variation.png ..
+  587  cd ..
+  588  ls
+  589  mv Exp2.html Aug22_VariationOfFeatSize.html
+  590  vim index.html 
+  591  vim index.html 
+  592  vim Aug22_VariationOfFeatSize.html 
+  593  ls
+  594  sc
+  595  ls
+  596  cp Aug10_SiftVsRBM.html Aug23_MultipleLevels.html
+  597  vim Aug23_MultipleLevels.html 
+  598  cp Aug22_VariationOfFeatSize.html Aug23_MultipleLevels.html
+  599  vim Aug23_MultipleLevels.html 
+  600  cd -
+  601  svn update
+  602  cp Exp3.html ../Aug23_MultipleLevels.html 
+  603  vim ../Aug23_MultipleLevels.html 
+  604  cd ..
+  605  vim Aug23_MultipleLevels.html 
+  606  vim index.html 
+  607  vim .bashrc
+  608  . .bashrc
+  609  go
+  610  cd Results/
+  611  svn update
+  612  ls
+  613  cp PGMZN.html ../Aug23_MultipleLevelsPGMZN.html 
+  614  cd ..
+  615  vim Results/../Aug23_MultipleLevelsPGMZN.html
+  616  go
+  617  vim Aug23_MultipleLevels.html 
+  618  cd Results/
+  619  svn update
+  620  cd .
+  621  cd -
+  622  vim Aug23_MultipleLevels.html 
+  623  cd ..
+  624  vim Aug23_MultipleLevels.html
+  625  cd public_html/GooglePages/
+  626  vim index.html 
+  627  vim Aug23_MultipleLevelsPGMZN.html 
+  628  vim Aug23_MultipleLevelsPGMZN.html 
+  629  vim Aug22_VariationOfFeatSize.html 
+  630  go
+  631  vim exp2.1.html 
+  632  mv exp2.1.html Aug28_OneRBM_VariationOfFeatSize.html
+  633  vim index.html 
+  634  cd Results/
+  635  ls *2.1*AP
+  636  ls *2.1*AP > names
+  637  cat *2.1*AP > APs
+  638  vim names 
+  639  paste names APs | sed 's/\t/ /'
+  640  paste names APs | sed 's/\t/ /' | sort -n -k1
+  641  paste names APs | sed 's/\t/ /' | sort -n -k1 > exp2.1Graph
+  642  ls | grep -v \.
+  643  ls
+  644  vim nameAPs 
+  645  vim exp2.1Graph 
+  646  sort -n -k1 nameAPs > exp2Graph
+  647  vim exp2Graph 
+  648  gnuplot
+  649  go
+  650  cd Results/
+  651  svn update
+  652  ls
+  653  rm *APAP *APpr *prAP
+  654  ls
+  655  vim Exp2.html 
+  656  ls *.html
+  657  cp exp2.1.html ..
+  658  cd ..
+  659  ls
+  660  vim Aug23_MultipleLevels
+  661  vim Aug22_VariationOfFeatSize.html 
+  662  ls Results/*.png
+  663  cp Results/*.png .
+  664  vim Aug28_OneRBM_VariationOfFeatSize.html 
+  665  cp Aug23_MultipleLevels.html Aug28_ComparisionDuringAfter.html
+  666  vim Aug28_ComparisionDuringAfter.html
+  667  vim Aug28_ComparisionDuringAfter.html
+  668  vim index.html 
+  669  ssh sidd@robots.ox.ac.uk
+  670  cd public_html/
+  671  cd GooglePages/
+  672  cd Results/
+  673  svn update
+  674  ls
+  675  cd public_html/GooglePages/
+  676  cd Results/
+  677  ls *.html
+  678  mv Exp2.2PGMZN.html Sep1_Exp2.2PGMZN.html
+  679  cp Sep1_Exp2.2PGMZN.html ../
+  680  cp Exp2.2PGM.html Sep1_Exp2.2PGM.html
+  681  mv  Sep1_Exp2.2PGM.html ..
+  682  cp ExpBest1.1PGM.html ../Sep2_ExpBest1.1PGM.html
+  683  cp ExpBest1.1PGMZN.html ../Sep2_ExpBest1.1PGMZN.html
+  684  cp ExpBest3PGM.html ../Sep4_ExpBest3PGM.html
+  685  cp ExpBest3PGMZN.html ../Sep4_ExpBest3PGMZN.html
+  686  cd ../
+  687  vim Sep1_Exp2.2PGM*
+  688  vim index.html 
+  689  vim Sep1_Exp2.2PGM*
+  690  vi Sep2_ExpBest1.1PGM*
+  691  vim Sep1_Exp2.2PGM*
+  692  cd Results/
+  693  ls *.AP
+  694  seq 10 10 140 | xargs -i echo "AirplaneRBMPGMlevel1words_200_EXP2.2_{}_pegasos-result.AP
+  695  " > pgm2.2AP
+  696  seq 10 10 140 | xargs -i echo "AirplaneRBMPGMZNlevel1words_200_EXP2.2_{}_pegasos-result.AP
+  697  " > pgmzn2.2AP
+  698  vim pgm2.2AP
+  699  pgmzn2.2AP
+  700  vim pgmzn2.2AP
+  701  cat pgm2.2AP | xargs -i cat {} > pgm2.2APs
+  702  cat pgmzn2.2AP | xargs -i cat {} > pgmzn2.2APs
+  703  vim pgmzn2.2APs
+  704  paste pgm2.2AP pgm2.2APs | sed 's/\t/ /' > plotpgm2.2APs
+  705  paste pgmzn2.2AP pgmzn2.2AP | sed 's/\t/ /' > plotpgmzn2.2APs
+  706  vim plotpgm2.2APs plotpgmzn2.2APs
+  707  paste pgmzn2.2AP pgmzn2.2APs | sed 's/\t/ /' > plotpgmzn2.2APs
+  708  vim plotpgmzn2.2APs
+  709  gnuplot
+  710  ls *.png
+  711  cp plotpgmzn2.2APs.png plotpgm2.2APs.png ..
+  712  cd ..
+  713  vim Sep1_Exp2.2PGM*
+  714  vim Sep1_Exp2.2PGM*
+  715  cd Results/
+  716  ls *APs
+  717  vim APs 
+  718  vim nameAPs 
+  719  sort -n -k1 nameAps > nameAPs.sorted
+  720  sort -n -k1 nameAPs > nameAPs.sorted
+  721  vim nameAPs.sorted
+  722  gnuplot
+  723  cp ComparisionTP.png ..
+  724  cd public_html/GooglePages/
+  725  ls
+  726  vim index.html 
+  727  ls
+  728  vim Aug23_MultipleLevels.html
+  729  vim Aug22_VariationOfFeatSize.html
+  730  vim index.html 
+  731  cp Aug28_ComparisionDuringAfter.html Sep5_ComparisionTP.html
+  732  vim Sep5_ComparisionTP.html
+  733  vim index.html 
+  734  vim Sep5_ComparisionTP.html
+  735  go
+  736  vim Sep2_ExpBest1.1PGM.html 
+  737  vim Sep4_ExpBest3PGMZN.html 
+  738  go
+  739  cd Results/
+  740  ls
+  741  rm *APAP
+  742  svn update
+  743  ls
+  744  cd ..
+  745  ls
+  746  vim Sep4_ExpBest3PGM*
+  747  vim index.html 
+  748  go
+  749  cp Sep2_ExpBest1.1PGM.html Sep10_PCAPGM.html
+  750  vim Sep10_PCAPGM.html 
+  751  go
+  752  cd Results/
+  753  svn update
+  754  go
+  755  vim index.html 
+  756  go
+  757  vim index.html 
+  758  vim Sep10_PCAPGM.html 
+  759  go
+  760  vim Sep8_Updates.html
+  761  vim index.html 
+  762  go
+  763  vim index.html 
+  764  cd Results/ComparisionTrainingProcedures/
+  765  ls
+  766  paste RedDim BATCHAPs | sed 's/\t/ /' > BATCH.plot
+  767  paste RedDim PCAAPs | sed 's/\t/ /' > PCA.plot
+  768  paste RedDim Exp2APs | sed 's/\t/ /' > EXP2.plot
+  769  paste RedDim Exp2.1APs | sed 's/\t/ /' > EXP2.1.plot
+  770  paste RedDim Exp2.2APs | sed 's/\t/ /' > EXP2.2.plot
+  771  vim *.plot
+  772  go
+  773  cd Results/
+  774  ls *BATCH*txt
+  775  ls *PGMZN*BATCH*txt
+  776  echo `cat RedDim | xargs -i cat AirplaneRBMPGMZNlevel1words_200_BATCH_{}_pegasos-result.txt` > ComparisionTrainingProcedures/BATCHPGMZNAPs
+  777  cd ComparisionTrainingProcedures/
+  778  paste RedDim BAYCHPGMZNAPs | sed 's/\t/ /' > BATCHPGMZN.plot
+  779  paste RedDim BATCHPGMZNAPs | sed 's/\t/ /' > BATCHPGMZN.plot
+  780  vim BATCHPGMZN.plot
+  781  cd ..
+  782   echo `cat RedDim | xargs -i cat AirplaneRBMPGMZNlevel1words_200_BATCH_{}_pegasos-result.AP` > ComparisionTrainingProcedures/BATCHPGMZNAPs
+  783  cd -
+  784  paste RedDim BATCHPGMZNAPs | sed 's/\t/ /' > BATCHPGMZN.plot
+  785  vim BATCHPGMZN.plot 
+  786  vim BATCHPGMZNAPs
+  787  paste RedDim BATCHPGMZNAPs | sed 's/\t/ /' > BATCHPGMZN.plot
+  788  vim BATCHPGMZN.plot
+  789  gnuplot
+  790  pwd
+  791  ls
+  792  go
+  793  cd Results/
+  794  ls *BATCH*Level*txt
+  795  svn update
+  796  ls *BATCH*Level*txt
+  797  vim prepareResults2.py 
+  798  python prepareResults2.py > ../Sep13_BATCH_Levels_PGM.html
+  799  vim prepareResults2.py 
+  800  python prepareResults2.py > ../Sep13_BATCH_Levels_PGMZN.html
+  801  go
+  802  cd Results/
+  803  ls
+  804  cd ComparisionTrainingProcedures/
+  805  ls
+  806  ls *.plot
+  807  gnuplot
+  808  go
+  809  ls
+  810  vim Sep13_BATCHPGM.html 
+  811  vim Sep13_BATCHPGMZN.html 
+  812  vim Sep12_PCAPGM.html 
+  813  cp Sep5_ComparisionTP.html Sep14_ComparisionTP.html
+  814  vim Sep14_ComparisionTP.html 
+  815  vim Sep13_BATCH_Levels_PGM*
+  816  go
+  817  vim Sep1_Exp2.2PGMZN.html
+  818  vim index.html 
+  819  vim index.html 
+  820  vim Sep2_ExpBest1.1PGM.html 
+  821  go
+  822  cd Results/`
+  823  ;
+  824  cd Results/
+  825  ls *BATCH*txt
+  826  svn update
+  827  ls *BATCH*txt
+  828  ls *BATCH*txt | wc -l
+  829  vim prepareResults.py 
+  830  python prepareResults.py > ../Sep13_BATCHPGM.html
+  831  vim prepareResults.py 
+  832  python prepareResults.py > ../Sep13_BATCHPGMZN.html
+  833  ls *PCA*txt
+  834  vim prepareResults.py 
+  835  python prepareResults.py > ../Sep12_PATCHPGM.html
+  836  ls *PATCH*AP
+  837  ls *PATCH*
+  838  ls *PCA*
+  839  ls *PCA*AP
+  840  python prepareResults.py > ../Sep12_PATCHPGM.html
+  841  vim prepareResults.py 
+  842  python prepareResults.py > ../Sep12_PATCHPGM.html
+  843  mv ../Sep12_PATCHPGM.html ../Sep12_PCAPGM.html 
+  844  ls *BATCH*
+  845  ls *BATCH*txt
+  846  ls | grep -v .
+  847  ls | grep -v "."
+  848  ls | grep -v "\."
+  849  mkdir ComparisionTrainingProcedures
+  850  ls *ExpBest2_*AP
+  851  ls *EXP2_*AP
+  852  ls *APAP
+  853  svn delete `ls *APAP`
+  854  ls *prAP
+  855  svn delete `ls *prAP`
+  856  ls *EXP2_*AP
+  857  ls *EXP2_*AP | grep T1200
+  858  svn delete `ls *EXP2_*AP | grep T1200`
+  859  ls *EXP2_*AP 
+  860  svn delete `ls *EXP2_*AP | grep T600`
+  861  svn delete `ls *EXP2_*AP | grep T800`
+  862  ls *EXP2_*AP 
+  863  svn delete `ls *EXP2_*AP | grep _1000_`
+  864  ls *EXP2_*AP 
+  865  cat AirplaneRBMPGMlevel1words_200_EXP2_100_pegasos-result.AP AirplaneRBMPGMlevel1words_T200_EXP2_100_pegasos-result.AP
+  866  cat AirplaneRBMPGMlevel1words_200_EXP2_10_pegasos-result.AP AirplaneRBMPGMlevel1words_T200_EXP2_10_pegasos-result.AP
+  867  svn delete `ls *EXP2_*AP | grep _200_`
+  868  ls *EXP2_*AP 
+  869  svn commit
+  870  svn commit -m "removedIrrelevant"
+  871  ls
+  872  seq 10 10 140 > RedDim
+  873  vim RedDim 
+  874  svn delete *_T1200_*
+  875  svn commit
+  876  svn commit -m "remove"
+  877  ls
+  878  svn delete *_1000_*
+  879  svn commit -m "remove"
+  880  ls
+  881  `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_T200_EXP2_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/Exp2APs
+  882  echo `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_T200_EXP2_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/Exp2APs
+  883  vim ComparisionTrainingProcedures/Exp2APs 
+  884  ls *EXP2.1*
+  885  echo `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_200_EXP2.1_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/Exp2.1APs
+  886  ls *EXP2.2*
+  887  echo `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_200_EXP2.2_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/Exp2.2APs
+  888  ls *PCA*txt
+  889  echo `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_200_PCA_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/PCAAPs
+  890  ls *BATCH*txt
+  891  echo `cat RedDim | xargs -i cat AirplaneRBMPGMlevel1words_200_BATCH_{}_pegasos-result.AP ` > ComparisionTrainingProcedures/BATCHAPs
+  892  cp RedDim ComparisionTrainingProcedures/
+  893  cd ComparisionTrainingProcedures/
+  894  ls
+  895  sed -i 's/ /\r/g' *
+  896  cat *
+  897  ls
+  898  wc -l *
+  899  vi BATCHAPs 
+  900  vim *
+  901  wc -l *
+  902  gnuplot
+  903  go
+  904  cp Sep13_BATCHPGM.html Sep15MoreLevelsPGM.html
+  905  vim index.html 
+  906  cp Sep13_BATCH_Levels_PGM.html Sep15MoreLevelsPGM.html
+  907  vim Sep15MoreLevelsPGM.html
+  908  cd Results/
+  909  svn update
+  910  cd -
+  911  cp Sep13_BATCH_Levels_PGMZN.html Sep15MoreLevelsPGMZN.html
+  912  vim Sep15MoreLevelsPGM.html
+  913  vim Sep15MoreLevelsPGMZN.html
+  914  vim index.html 
+  915  vim Sep15MoreLevelsPGMZN.html
+  916  ls
+  917  go 
+  918  vim Sep15MoreLevelsPGM*
+  919  quota
+  920  go
+  921  cd Results/
+  922  svn update
+  923  cp Oct2MKL.html ..
+  924  cd ..
+  925  vim Oct2MKL.html 
+  926  vim index.html 
+  927  go
+  928  cd Results/
+  929  svn update
+  930  cp Oct1* ..
+  931  cd ..
+  932  vim index.html 
+  933  vim index.html 
+  934  vim Oct12MaxSuppressionSubsampling.html 
+  935  vim Oct11PatchNormalization.html 
+  936  vim Oct12MaxSuppressionSubsampling.html 
+  937  pwd
+  938  ls StatsGraphs/
+  939  ls
+  940  ls
+  941  ls StatsGraphs/ > Oct13StatsGraphs.html
+  942  vim Oct13StatsGraphs.html
+  943  vim Oct13StatsGraphs.html
+  944  go
+  945  vim Sep13_BATCH_Levels_PGM.html 
+  946  vim index.html 
+  947  go
+  948  cd Results
+  949  cd ComparisionTrainingProcedures/
+  950  ls *plot
+  951  ls 
+  952  go
+  953  cp Sep14_ComparisionTP.html Oct15_ComparisionTP.html
+  954  vim Oct15_ComparisionTP.html
+  955  exit
+  956  res
+  957  go
+  958  cd Results/
+  959  ls
+  960  cd ComparisionTrainingProcedures
+  961  ls
+  962  ls *.plot
+  963  cd ..
+  964  svn update
+  965  cd -
+  966  ls
+  967  seq 10 10 140 > fileList
+  968  vim fileList 
+  969  cat fileList | xargs -i ls ../CRBMbatch_{}-result.AP
+  970  cat `cat fileList | xargs -i ls ../CRBMbatch_{}-result.AP` > CRBMAPs
+  971  ls
+  972  vim CRBMAPs 
+  973  ls *APs
+  974  paste fileList CRBMAPs | sed 's/\t/ /' > CRBM.plot
+  975  vim Exp2APs
+  976  vim EXP2.1.plot
+  977  gnuplot
+  978  go
+  979  vim index.html 
+  980  cd public_html/
+  981  ls
+  982  ping 10.2.16.192
+  983  ssh root@10.2.16.16
+  984  go
+  985  vim Oct24ImageLevel.html 
+  986  go
+  987  cp Oct13StatsGraphs.html Oct22StatsGraphs.html
+  988  vim Oct22StatsGraphs.html
+  989  vim index.html 
+  990  cd Results/
+  991  svn update
+  992  cp Oct24ImageLevel.html ..
+  993  cd ..
+  994  vim index.html 
+  995  vim Oct24ImageLevel.html 
+  996  vim Sep2_ExpBest1.1PGM.html
+  997  go
+  998  mkdir NewResults/
+  999  rm NewResults/
+ 1000  rm NewResults/ -rf
+ 1001  cd
+ 1002  ls
+ 1003  svn admin create NewResults
+ 1004  svn-admin create NewResults
+ 1005  svnadmin create NewResults
+ 1006  ls
+ 1007  cd -
+ 1008  ls
+ 1009  pwd
+ 1010  svn co svn+ssh://siddhartha.chandra@localhost/research/ms2k7/cse/siddhartha.chandra/public_html/GooglePages
+ 1011  svn co svn+ssh//siddhartha.chandra@localhost/research/ms2k7/cse/siddhartha.chandra/public_html/GooglePages
+ 1012  history | grep svn co
+ 1013  history > hist
