@@ -1,0 +1,743 @@
+<html>
+<title>Diverse Multi-label Prediction</title>
+<head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style>
+a {
+text-decoration: none;
+}
+
+h1 {text-align:center}
+    div { border: 3px solid; padding: 5px; }  
+    div.left { text-align: left; background: #ffcccc; }  
+    div.center { text-align: center; background: #ccffcc; }  
+    div.right { text-align: right; background: #ccccff; }  
+    div.justify { text-align: justify; background: #a1bad1;  font-family:Times New Roman;}  
+
+.dotted-u {border-bottom: 1px dotted red;}
+.dashed-u {border-bottom: 1px dashed blue;}
+.double-u {border-bottom: 3px double #aa0;}
+.groove-u {border-bottom: 5px groove #aa00aa;}
+.ridge-u {border-bottom: 5px ridge #0bb;}
+.solid-u {border-bottom: 5px solid green; }
+
+table
+{
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+table td
+{
+    padding: 4px 4px;
+}
+
+td.strikeout{
+text-decoration:line-through;
+}
+
+tr.strikeout{
+text-decoration:line-through;
+}
+
+tr.alter:nth-child(even) {background: #CCC}
+tr.alter:nth-child(odd) {background: #FFF}
+</style>
+</head>
+
+<body>
+<div class="justify">
+<h1 align="center">Diverse Multi-label Prediction</h1>
+
+<p align="center">---------------------------- <b> Update: 23/10/2014</b>  ----------------------------</p>
+		
+<table align="center" border="1">
+<caption><b>Table 10</b>:Tag Suggestion For Unlabelled Images.</caption>
+<tr><td><b>Method</b></td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td><td>similarity@5</td><td>time (in sec)</td></tr>
+<tr><td>tagrel</td>  <td>0.1401</td> <td>0.1242</td><td>0.0998</td><td>0.0939</td><td>0.0898</td><td>0.0900</td> <td>0.4749</td></tr>
+<tr><td>LSH</td>     <td>0.0637</td> <td>0.0573</td><td>0.0456</td><td>0.0390</td><td>0.0376</td><td>0.0853</td> <td>0.0016</td></tr>
+<tr><td>SVD</td>     <td>0.1083</td> <td>0.0876</td><td>0.0669</td><td>0.0653</td><td>0.0592</td><td>0.0908</td> <td>0.0045</td></tr>
+</table>
+
+<p align="center">---------------------------- <b> Update: 27/08/2014</b>  ----------------------------</p>
+<ol>
+<li>Hashing with side information/data dependence. 
+	<ul>
+	<li>Density Sensitive Hashing, arXiv, 2012 [<a href="http://arxiv.org/abs/1205.2930">link</a>]</li>
+	<li>Distribution-Aware Locality Sensitive Hashing, Advances in Multimedia Modeling, 2013 [<a href="http://link.springer.com/chapter/10.1007%2F978-3-642-35728-2_38">link</a>]</li> 
+	<li>Weakly-Supervised Hashing in Kernel Space, CVPR, 2010 [<a href="http://www.lv-nus.org/%5C/papers/2010/cvpr10-hash.pdf">pdf</a>] </li>
+	<li>Supervised Hashing with Kernels, CVPR, 2012 [<a href="http://www.ee.columbia.edu/~wliu/CVPR12_ksh.pdf">pdf</a>]
+	<li>Supervised optimal locality preserving projection, Pattern Recognition, 2011 [<a href="http://www.sciencedirect.com/science/article/pii/S0031320311002627">link</a>]</li>
+	</ul></li>
+<li>Low-rank approximation to SVD 
+	<ul><li> In the context of low-rank approximation, volume sampling is related to row/column subset selection problem. The goal is to approximate the nearest rank-k matrix to a given matrix. [<a href="http://arxiv.org/abs/1004.4057">link</a>]<!--[<a href="http://simons.berkeley.edu/talks/ravi-kannan-2013-09-06">video-link</a>]--!></li>
+	</ul></li>
+
+<li>Multi-label problem for power law distributions
+	<ul><li> Power law distributions make it statistically harder to learn good decision boundaries for rare categories(e.g lshtc dataset). A re-ranking approach [<a href="http://dl.acm.org/citation.cfm?id=2609509">link</a>] exploits distribution of the categories and improves over state-of-art in the case of mono-label multi-class classification problem.</li> </ul></li>
+<li>Approximate Analytics: Keeping Pace with Big Data using Parallel Locality Sensitive Hashing, ISTC Big Data, 2013 [<a href="http://istc-bigdata.org/index.php/approximate-analytics-keeping-pace-with-big-data-using-parallel-locality-sensitive-hashing">link</a>]</li>
+<li> Robust bloom filters for large multilabel classification tasks, NIPS, 2013 <a href="http://papers.nips.cc/paper/5083-robust-bloom-filters-for-large-multilabel-classification-tasks.pdf">[pdf]</a></li>
+</ol>
+
+
+<p align="center">---------------------------- <b> Update: 19/08/2014</b>  ----------------------------</p>
+<!--<div><i>The fundamental challenge we faced in all the experiments is that the dataset consists of a number of rare labels that are only assigned to a small portion of the documents. This could be crucial for the performance of large-scale multi-labeling algorithms.</i> We summarized the experimented conducted on lshtc3 dataset here:</div>-->
+<ul>
+<li> Sheet 1 results show that using large $k$ for low-rank decomposition multi-label algorithm improves accuracy. </li>
+<li> Sheet 2 results show that removing $top1$ label improves accuracy with low-rank decomposition algorithm on lshtc3 dataset. </li>
+<li> Sheet 4 results show that a combination of multi-class classification(with linear SVM) and multi-label( with low-rank decomposition) further improves accuracy on lshtc3 dataset.</li>
+<li>Sheet 5 demonstrates more details along the results of Sheet 4. We see that in the hierarchical model, the contribution of multi-label to the total accuracy gradually decreases for large values of $top$. It is likewise clear that the multi-class model contributes more to the total accuracy while the lsh-based multi-level performs poorly.</li>
+<li>Sheet 6 demonstrates the retrieval with multiple labels per document and also shows the diversity within the correctly predicted labels. We evaluated the performance in terms of precision, recall and shortest path between labels for diversity.</li> 
+<li> Sheet 7 demonstrates the performance of hierarchical multi-labeling models. From our experiments, it is clear that the hierarchical multi-labeling model performs better than the single model which is built on all the labels. We also evaluated the diversity within the correctly predicted labels for our methods. In our experiments, we noticed an improvement in diversity with SVD method over lsh and naive methods. Surprisingly, for the 3C-model we obtained better F-measure than lsh and naive methods!  However, the improvement is <i>marginal</i> only. We believe that the following factors have an impact in our experiments/results:
+
+<ul>
+<li> Given the low accuracy values in our experiments, the diversity measure for our situation may not be fitting.</li>
+<li> Since, all methods have reported close diversity scores, it could additionally be that the dataset may not have much redundant labels.</li>
+</ul>
+
+Drank <a href="http://link.springer.com/chapter/10.1007%2F978-3-319-06608-0_2">[link]</a> measures diversity of the labels with a given (un)balanced concept hierarchy (tree).  In our case, the concept graph is unbalanced and directed with cycles. We reduced the graph to balanced tree using the BFS traversal at the root node. We executed their measures for the groundtruth and the correctly predicted labels of our methods. 
+<ul>
+	<li> All our methods have reported <i>better</i> drank score than the groundtruth. </li>
+	<li> Further, the drank scores of all methods are <i>nearly the same</i>.</li>
+</ul>
+</li>
+</ul>
+
+<p align="center">---------------------------- <b> Updates</b>  ----------------------------</p>
+<center><iframe src="https://docs.google.com/spreadsheets/d/1exa6zGa8W2vXzmWM1Jna7pR8H-QLj8JLE2y8MuRqa5Q/pubhtml?widget=true&amp;headers=false" width="90%" height="900"></iframe></center>
+<br/>
+<figure>
+<figcaption><center>Fig.2 - Label Distribution when top1 is removed datasets.</center></figcaption>
+<img src="./histograms/top1_medium.jpg" width="100%">
+</figure>
+<figure>
+<figcaption><center>Fig.1 - Label Distribution for various datasets.</center></figcaption>
+<img src="./histograms/label_distribution.jpg" width="100%">
+</figure>
+<p align="center">---------------------------- <b> Update: 03/05/2014</b>  ----------------------------</p>
+
+In earlier experiments, we used an approach based on ranking the labels (a kind of <i>"flat classification"</i>). Tables 4, 5 and 6 indicate that LSHTC3 dataset has <i>non-uniform distribution of labels</i> in the documents. A brief study of related works in the context of the LSHTC3 challenge is summarized as follows: 
+
+<ol>
+	<li> A study of flat and hierarchical classification strategies in the context of large-scale taxonomies claim that "<i>top-down hierarchical classifiers are well suited to unbalanced, large-scale taxonomies, whereas flat ones should be preferred for well-balanced taxonomies</i>". [<b>ref: NIPS paper<sup>[3]</sup> at Page 3, Theorem 1 and Page 8, section 4</b>]</li> 
+
+	<li> When documents are not uniformly distributed over all categories, categories with more documents tend to come up more often, leading to a bias favoring frequent categories. <i>Incorporating the distribution of the categories in the prediction model would improve the accuracy</i>. [<b>ref: k-NN<sup>[2]</sup> at Page 6, section 3.6</b>] </li>
+
+	<li> The hierarchial relationships between different categories expose rich information helpful for the categorization of a document, but a simple voting/ranking scheme leaves the hierarchical information unutilized. <i>Incorporating the category hierarchy improves the classication accuracy</i>. [<b>ref: k-NN<sup>[2]</sup> at Page 6 and 7, section 3.6</b>]</li> 
+	
+	<li> The number of categories for a document is not fixed.  <i>A threshold parameter must be set to predict the top categories of a document</i>. [<b>ref: k-NN<sup>[2]</sup> at Page 9, section 3.7</b>]</li>
+	
+	<li> <i>Combination of multiple similarity measures would capture different aspects of semantics.</i> [<b>ref: k-NN<sup>[2]</sup> at Page 6, section 3.5</b>]</li> 
+
+</ol> 
+
+<b>References</b>:
+<ol>
+	<li> LSHTC3 workshop papers/reports [<a href="http://lshtc.iit.demokritos.gr/LSHC3_workshop/schedule">link</a>]</li>
+<li> A k-NN Method for Large Scale Hierarchical Text Classification, Discovery Challenge Workshop on LSHTC, ECML/PKDD 2012  [<a href="http://lshtc.iit.demokritos.gr/system/files/lshc3_Han.pdf">pdf</a>] 
+	<li> On Flat versus Hierarchical Classiﬁcation in Large-Scale Taxonomies, NIPS 2013 [<a href="http://papers.nips.cc/paper/5082-on-flat-versus-hierarchical-classification-in-large-scale-taxonomies.pdf">pdf</a>]</li>
+	<li> Improving Hierarchical SVMs by Hierarchy Flattening and Lazy Classification, [<a href="http://lshtc.iit.demokritos.gr/system/files/lshtc_malik.pdf">pdf</a>] </li>
+</ol>
+
+<table align="center" border="1" bgcolor="white">
+<caption><b>Table 9</b>: Differences in lshtc and wiki<sup>[Table 2]</sup> dataset</caption>
+<tr align="center" bgcolor="yellow"><td><b>Task</b></td><td> <b>lshtc3_track1</b><sup><font size="1">medium</font></sup><br><font size="1">(multi-label)</font> </td><td> <b>lshtc3_track1</b><sup><font size="1">large</font></sup><br><font size="1">(multi-label)</font> </td><td><b> lshtc4_track1</b><br><font size="1">(multi-label)</font> </td> <td><b> lshtc4_track2</b><br><font size="1">(multi-task)</font></td><td><b>wiki data</b><sup><font size="1">Table 2</font></sup><br><font size="1">(multi-label)</font></td></tr>
+<tr align="center"><td>$n_{tr}$</td><td>4,56,886</td><td>23,65,436</td><td>23,65,436</td><td class="strikeout">23,65,436</td><td>8,81,805</td> </tr>
+<tr align="center"><td>$n_{te}$</td><td>81,262</td><td>452167</td><td>452167</td><td>-</td><td>10,000</td> </tr>
+<tr align="center"><td>$d$</td><td>20,85,166</td><td>20,85,166 </td><td>20,85,166</td><td class="strikeout">24,54,660</td><td>3,66,932</td> </tr>
+<tr align="center"><td>$l$</td><td>36,504</td> <td>4,45,729</td><td>4,45,729</td><td class="strikeout">4,45,729</td><td>2,13,707</td></tr>
+<tr align="center"><td>$avgCat$</td><td>1.8446</td><td>3.2621</td><td>3.2621</td><td class="strikeout">3.2621</td><td>8.1409</td></tr>
+<tr align="center"><td>$hierarchy$</td><td>Acyclic</td><td>Cyclic</td><td>Cyclic</td><td class="strikeout">Acyclic</td><td>partial graph</td></tr>
+<tr align="center"><td>label distribution</td><td><a href="./histograms/medium_lshtc3.jpg">plot_medium</a></td><td><a href="./histograms/large_lshtc3.jpg">plot_large</a></td><td><a href="./histograms/track1_lshtc4.jpg">plot_large</a></td><td class="strikeout"><a href="./histograms/track2_lshtc4.jpg">plot_lshtc4</a></td> <td><a href="./histograms/wiki.jpg">plot_wiki</a></td></tr>
+</table>
+<br/>
+
+<table align="center" border="1" bgcolor="yellow">
+<caption><b>Table 8</b>: lshtc3 and lshtc4 participants(rows in white) Vs our approach(rows in gray)</caption>
+<tr align="center"><td>Method</td><td>Acc</td><td>HF</td><td>HP</td><td>HR</td></tr>
+<tr align="center" class="alter"><td>$medium@top2 $</td><td>0.0689812</td><td>0.396414</td><td>0.398554</td><td>0.446668</td></tr>
+<tr align="center" class="alter"><td>$lshtc3_{track1}$ [<a href="http://lshtc.iit.demokritos.gr/lshtc3_track1_medium">medium</a>]</td><td>0.438162</td><td>0.709171</td><td>0.764132 </td><td>0.713527</td></tr>
+<tr align="center" class="alter"><td>$large@top2 $</td><td>0.0283623</td><td>0.124632</td><td>0.153107</td><td>0.187177</td></tr>
+<tr align="center" class="alter"><td>$lshtc3_{track1}$ [<a href="http://lshtc.iit.demokritos.gr/lshtc3_track1_large">large</a>]</td><td>0.380602</td><td>0.578689</td><td>0.682031 </td><td>0.609096 </td></tr>
+<tr align="center" class="alter"><td>$large@top4 $</td><td>0.0357018</td><td>0.146756</td><td>0.17299</td><td>0.15706</td></tr>
+<tr align="center" class="alter"><td>$lshtc4$ [<a href="http://lshtc.iit.demokritos.gr/lshtc4_track1">track1</a>]</td><td>0.318506</td><td>0.429467</td><td>0.540169</td><td>0.428946</td></tr>
+<tr align="center" class="strikeout"><td>$lshtc4$ [<a href="http://lshtc.iit.demokritos.gr/lshtc4_track2">track2</a>]</td><td>0.282966</td><td>0.597528</td><td>0.604466</td><td>0.593947</td></tr>
+</table>
+<p align="center">---------------------------- <b> Update: 25/04/2014</b>  ----------------------------</p>
+<table align="center" >
+<tr><td>
+<table align="center" bgcolor="#D8DFE6">
+<caption><b>Table 7</b>: Baselines on lshtc4 wikipedia after removing top-3 labels  </caption>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-7}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>1.19</td> <td>0.93</td><td>0.79</td><td>0.69</td><td>0.63</td></tr>
+<tr><td>250</td>     <td>1.24</td> <td>0.99</td><td>0.84</td><td>0.74</td><td>0.67</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-3}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>1.18</td> <td>0.92</td><td>0.78</td><td>0.68</td><td>0.62</td></tr>
+<tr><td>250</td>     <td>1.24</td> <td>0.98</td><td>0.83</td><td>0.73</td><td>0.66</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-1}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>1.18</td> <td>0.94</td><td>0.79</td><td>0.70</td><td>0.64</td></tr>
+<tr><td>250</td>     <td>1.21</td> <td>0.97</td><td>0.83</td><td>0.73</td><td>0.66</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{2}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>1.25</td> <td>0.97</td><td>0.84</td><td>0.75</td><td>0.69</td></tr>
+<tr><td>250</td>     <td>1.29</td> <td>1.01</td><td>0.87</td><td>0.78</td><td>0.71</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{7}$<font size="1">(GD converges quickly with bias)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>0.55</td> <td>0.52</td><td>0.49</td><td>0.46</td><td>0.46</td></tr>
+<tr><td>250</td>     <td>0.55</td> <td>0.52</td><td>0.49</td><td>0.46</td><td>0.46</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td></td> <td></td><td></td><td></td><td></td></tr>
+<tr><td>250</td>     <td></td> <td></td><td></td><td></td><td></td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<p align="center">---------------------------- <b> Update: 15/04/2014</b>  ----------------------------</p>
+<p align="center"> <b>Analysis of experiments reported in Table 4 and  Table 5 </b></p>
+<ul>
+<li>The training algorithm converged very quickly for large values of $\lambda$ and also reported  <i>bias</i> towards some labels.</li> 
+	<ul>
+	<li>Table 6 shows top five labels (w.r.t frequency of occurences) in the ground truth of test dataset.
+	<li>When these labels were assigned to all documents, we obtain the accuracy shown in Table 6 and is consistent with our findings in Table 4, 5.1 and 5.2 for $\lambda = 10^{5}, 10^{7}$.</li>
+	</ul>
+	<table align="center" bgcolor="#90B890">
+	<caption><b>Table 6: </b><i>Biased labels</i> for $\lambda=10^{5}, 10^{7}$ </caption>
+		<tr><td></td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+		<tr><td><b>Label Ids</b></td><td>24177</td><td>285613</td><td>98808</td><td>264962</td><td>242532</td></tr>
+		<tr><td><b>#Occurrences <br>(in 2.4L test docs)</b></td><td>39200</td><td>4210</td><td>1511</td><td>1323</td><td>1062</td></tr>
+		<tr><td><b>Accuracy(in %)</b></td><td>16.33</td><td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+	</table>
+<li>In Tables 4, 5.1, 5.2 for $\lambda = 10^{-7}$ no significant gain in accuracy is reported. </li> 
+<li>The distribution of $||h_{i}||$ look similar for various parameters $\lambda$, k. Sample plots for lshtc4 dataset in Table 4 are <a href="./histograms/H-125.jpg">H-125</a> <a href="./histograms/H-250.jpg">H-250</a> <a href="./histograms/H-500.jpg">H-500</a>. The plot for wiki dataset in Table 2 is here (<a href="./histograms/wiki-500.jpg">wiki-H-500</a>). </li>
+<li>The distributions are similar for both datasets. Therefore, quality of baselines from the plots of $||h_{i}||$ alone is not interpretable. </li>
+</ul>
+		<p align="center"> <b>Experiments with memory, time constraints </b></p>
+<ul>
+<li>The distribution of $\frac{||h_i-h_j||^{2}}{||h_i||||h_j||}$ involves around 4,00,000 X 4,00,000 computations. </li>
+<li>LSH results by increasing num_beyond variable are not tried.  </li>
+</ul>
+
+
+<p align="center">---------------------------- <b> Update: 04/04/2014 - 15/04/2014</b>  ----------------------------</p>
+<table align="center" >
+<tr><td>
+<table align="center" bgcolor="#D8DFE6">
+<caption><b>Table 5.1</b>: Baselines on lshtc4 wikipedia with normalized features  </caption>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-9}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>15.14</td> <td>8.45</td><td>5.91</td><td>4.60</td><td>3.79</td></tr>
+<tr><td>250</td>     <td>15.18</td> <td>8.47</td><td>5.92</td><td>4.61</td><td>3.80</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-7}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.72</td> <td>8.22</td><td>5.75</td><td>4.47</td><td>3.69</td></tr>
+<tr><td>250</td>     <td>14.76</td> <td>8.25</td><td>5.78</td><td>4.50</td><td>3.71</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption> $\lambda = 10^{-3}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.75</td> <td>8.23</td><td>5.76</td><td>4.48</td><td>3.70</td></tr>
+<tr><td>250</td>     <td>14.79</td> <td>8.26</td><td>5.79</td><td>4.51</td><td>3.72</td></tr>
+</table>
+</td><td>
+<table align="center" border="1" >
+<caption>$\lambda = 10^{-1}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.50 </td> <td>8.06</td><td>5.66</td> <td>4.43</td><td>3.66</td></tr>
+<tr><td>250</td>     <td>14.50</td> <td>8.07</td><td>5.69</td><td>4.45</td><td>3.67</td></tr>
+</table>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{2}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.40</td> <td>9.13</td><td>6.36</td><td>4.93</td><td>4.05</td></tr>
+<tr><td>250</td>     <td>16.39</td> <td>9.13</td><td>6.35</td><td>4.93</td><td>4.05</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{3}$<font size="1"></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+</table>
+</td></tr>
+<tr><td>
+
+<table align="center" border="1">
+<caption>$\lambda = 10^{5}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{7}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+</table>
+</td></tr>
+</table>
+</td><td>
+
+<table align="center" bgcolor="#D8DFE6">
+<caption><b>Table 5.2</b>: Baselines on lshtc4 wikipedia with tfidf features  </caption>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-9}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>15.28</td> <td>8.52</td><td>5.96</td><td>4.64</td><td>3.82</td></tr>
+<tr><td>250</td>     <td>15.32</td> <td>8.55</td><td>5.98</td><td>4.65</td><td>3.83</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-7}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.85</td> <td>8.27</td><td>5.79</td><td>4.51</td><td>3.72</td></tr>
+<tr><td>250</td>     <td>14.94</td> <td>8.34</td><td>5.84</td><td>4.55</td><td>3.75</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-3}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.87</td> <td>8.28</td><td>5.80</td><td>4.52</td><td>3.73</td></tr>
+<tr><td>250</td>     <td>14.94</td> <td>8.35</td><td>5.84</td><td>4.55</td><td>3.75</td></tr>
+</table>
+</td><td>
+<table align="center" border="1" >
+<caption>$\lambda = 10^{-1}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.62 </td> <td>8.13</td><td>5.71</td> <td>4.46</td><td>3.68</td></tr>
+<tr><td>250</td>     <td>14.58</td> <td>8.11</td><td>5.71</td><td>4.46</td><td>3.69</td></tr>
+</table>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{2}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>15.54</td> <td>8.67</td><td>6.06</td><td>4.71</td><td>3.89</td></tr>
+<tr><td>250</td>     <td>15.53</td> <td>8.65</td><td>6.06</td><td>4.72</td><td>3.90</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{3}$<font size="1"></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.41</td> <td>9.15</td><td>6.37</td><td>4.94</td><td>4.06</td></tr>
+<tr><td>250</td>     <td>16.41</td> <td>9.15</td><td>6.37</td><td>4.94</td><td>4.06</td></tr>
+</table>
+</td></tr>
+<tr><td>
+
+<table align="center" border="1">
+<caption>$\lambda = 10^{5}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{7}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.95</td></tr>
+</table>
+</td></tr>
+</table>
+<td></tr>
+</table>
+
+<p align="center">---------------------------- <b> Update: 08/03/2014 - 01/04/2014</b>  ----------------------------</p>
+
+<table align="center" border="1">
+<tr><td>
+
+<table align="center" border="1" bgcolor="white">
+<caption><b>lshtc4 dataset</b></caption>
+<tr><td>$n_{tr}$</td><td>21,25,436</td> </tr>
+<tr><td>$n_{te}$</td><td>2,40,000</td> </tr>
+<tr><td>$d$</td><td>24,54,660 </td> </tr
+<tr><td>$L$</td> <td>4,45,729</td></tr>
+<tr><td>Avg #labels per doc</td><td> 3.2614 </td></tr>
+<tr><td>Regularization parameter</td><td>$\lambda$</td></tr>
+<tr><td>Avg. training time</td><td>12-18 hrs</td></tr>
+<tr><td>Avg. testing time </td><td>20 hrs</td></tr>
+<tr><td>Memory usage</td><td>96gb</td></tr>
+</table>
+
+</td><td>
+<table align="center" bgcolor="#D8DFE6">
+<caption><b>Table 4</b>: Baselines on lshtc4 wikipedia (Track 2) dataset. </caption>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-9}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.67</td> <td>8.14</td><td>5.67</td><td>4.39</td><td>3.61</td></tr>
+<tr><td>250</td>     <td>14.76</td> <td>8.19</td><td>5.70</td><td>4.41</td><td>3.62</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-7}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.65</td> <td>8.12</td><td>5.66</td><td>4.38</td><td>3.61</td></tr>
+<tr><td>250</td>     <td>14.76</td> <td>8.20</td><td>5.70</td><td>4.41</td><td>3.63</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{-3}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.19</td> <td>7.88</td><td>5.51</td><td>4.27</td><td>3.51</td></tr>
+<tr><td>250</td>     <td>14.24</td> <td>7.92</td><td>5.52</td><td>4.28</td><td>3.51</td></tr>
+<tr><td>500</td>     <td>14.54</td> <td>8.08</td><td>5.63</td><td>4.36</td><td>3.58</td></tr>
+</table>
+</td><td>
+<table align="center" border="1" >
+<caption>$\lambda = 10^{-1}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.57 </td> <td>8.07</td><td>5.64</td> <td>4.37</td><td>3.59</td></tr>
+<tr><td>250</td>     <td>14.81 </td> <td>8.20</td><td>5.71</td> <td>4.42</td><td>3.63</td></tr>
+<tr><td>500</td>     <td>14.86 </td> <td>8.22</td><td>5.74</td> <td>4.44</td><td>3.65</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{2}$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>14.72</td> <td>8.17</td><td>5.70</td><td>4.42</td><td>3.63</td></tr>
+<tr><td>250</td>     <td>14.66</td> <td>8.14</td><td>5.68</td><td>4.41</td><td>3.63</td></tr>
+<tr><td>400</td>     <td>14.63</td> <td>8.12</td><td>5.67</td><td>4.40</td><td>3.62</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{3}$<font size="1"></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>15.18</td> <td>8.42</td><td>5.87</td><td>4.55</td><td>3.74</td></tr>
+<tr><td>250</td>     <td>15.15</td> <td>8.41</td><td>5.86</td><td>4.55</td><td>3.74</td></tr>
+<tr><td>400</td>     <td>15.16</td> <td>8.14</td><td>5.87</td><td>4.54</td><td>3.74</td></tr>
+</table>
+</td></tr>
+<tr><td>
+
+<table align="center" border="1">
+<caption>$\lambda = 10^{5}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+<tr><td>400</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\lambda = 10^{7}$<font size="1">(GD converges quickly)</font></caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-2</b></td><td><b>top-3</b></td><td><b>top-4</b></td><td><b>top-5</b></td></tr>
+<tr><td>125</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+<tr><td>250</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+<tr><td>400</td>     <td>16.33</td> <td>9.04</td><td>6.24</td><td>4.82</td><td>3.94</td></tr>
+</table>
+</td></tr>
+</table>
+
+</td></tr>
+</table>
+<br>
+
+References: 
+<ol>
+	<li>LSHTC4 challenge <a href="http://lshtc.iit.demokritos.gr/LSHTC4_GUIDELINES">[link]</a></li>
+	<li>Evaluation measures for Hierarchical Classification, arXiv, 2013 <a href="http://arxiv.org/pdf/1306.6802v2.pdf">[pdf]</a></li>
+	<li>Random k-Labelsets: An Ensemble Method for Multilabel Classification, ECML, 2007 <a href="http://talos.csd.auth.gr/tsoumakas/publications/C19.pdf">[pdf]</a></li>
+	<li>Package that implements the evaluation measures can be found here <a href="http://nlp.cs.aueb.gr/software_and_datasets/HEMKit.zip">[zip]</a></li>
+</ol>
+<p align="center">---------------------------- <b> Update: 14/02/2014 - 20/02/2014</b>  ----------------------------</p>
+<b>Top-K accuracy</b>: for each instance, we select the K labels with the largest decision values for prediction. The average accuracy among all instances are reported as the top-K accuracy.
+<br><br>
+<table align="center" border="1"> 
+<caption><b>Table 2</b>: Performance on for various values of $\epsilon$ with lsh method. </caption>
+<tr><td>
+<table align="center" border="1" bgcolor="yellow">
+<caption>Eurlex dataset</caption>
+<tr><td>
+<table align="center" border="1">
+<caption>baseline</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr><td>250</td>     <td>52.71</td> <td> 41.17</td> <td>32.88</td></tr>
+<tr><td>500</td>     <td>57.78</td> <td> 44.62</td> <td>36.07</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.3, b=150$</caption>
+<tr><td>$k$</td><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr><td>250</td>     <td>51.21</td> <td> 38.26</td> <td>30.19</td></tr>
+<tr><td>500</td>     <td>54.47</td><td> 39.00</td> <td>30.53</td></tr>
+</table>
+</td></tr>
+</table>
+</td><td>
+<table align="center" border="1" bgcolor="green">
+<caption>wiki dataset </caption>
+<tr><td>
+<table align="center" border="1">
+<caption>$\epsilon = 1.25, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>    <td>12.71</td> <td>7.77</td> <td>5.85</td></tr>
+<tr>    <td>13.54</td> <td>8.18 </td> <td>6.06</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 1, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>15.61</td> <td>9.64</td> <td>7.46</td></tr>
+<tr>     <td>17.08</td> <td>10.77 </td> <td>7.94</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.95, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>16.23</td> <td>10.26</td> <td>7.92</td></tr>
+<tr>     <td>17.53</td> <td>11.06</td> <td>8.39</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.90, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>16.06</td> <td>10.15</td> <td>7.85</td></tr>
+<tr>     <td>18.60</td> <td>11.70</td> <td>8.83</td></tr>
+</table>
+</tr><tr>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.85, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>    <td>17.03</td> <td>11.26</td> <td>8.67</td></tr>
+<tr>    <td>19.68</td> <td>12.35</td> <td>9.47</td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.75, b=150$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>17.02</td> <td>11.43</td> <td>8.98</td></tr>
+<tr>     <td> 20.74</td> <td>13.26</td> <td>10.27  </td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>$\epsilon = 0.70, b=100$</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>17.80</td> <td>11.62</td> <td>9.01</td></tr>
+<tr>     <td>20.54 </td> <td>13.60</td> <td>10.52 </td></tr>
+</table>
+</td><td>
+<table align="center" border="1">
+<caption>baseline</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>19.09</td> <td> 14.25</td> <td>11.40</td></tr>
+<tr>     <td>22.63</td> <td>17.43 </td> <td>14.11</td></tr>
+</table>
+</td></tr>
+</table>
+</td></td>
+</table>
+<br>
+<table align="center" border="1">
+<caption><b>Table 3</b>: #NearestNeighbors(NNs) Vs $\epsilon$.</caption>
+<tr><td>
+<table align="center" border="1" bgcolor="white">
+<caption>parameters</caption>
+<tr><td>$\epsilon$ in lsh</td></tr>	
+<tr><td>#HashBits, $b$ </td></tr>	
+<tr><td>#randperms</td></tr>
+<tr><td>#NNs</td>	</tr>	
+<tr><td>Time(in msec) for k=250</td></tr>
+<tr><td>Time(in msec) for k=500</td></tr>
+<tr><td>Random permutations (.txt file size in GB)</td></tr>	
+</table>
+</td><td>
+<table align="center" border="1" bgcolor="yellow">
+<caption>eurlex dataset</caption>
+<tr> <td>0.3</td><td>baseline</td></tr>
+<tr> <td>150</td><td>n/a</td></tr>
+<tr> <td>589</td><td>n/a</td></tr>
+<tr> <td>~900</td><td>3993</td></tr>
+<tr> <td>3.3</td><td>4</td></tr>
+<tr> <td>3.9</td><td>4</td></tr>
+<tr> <td>-</td><td>n/a</td></tr>
+</table>
+</td><td>
+<table align="center" border="1" bgcolor="green">
+<caption>wiki dataset</caption>
+<tr>				<td>1.25</td><td>1.00</td><td>0.95</td><td>0.90</td><td>0.85</td><td>0.75</td><td>0.70</td><td>baseline</td></tr>
+<tr>				<td>150</td><td>150</td><td>150</td><td>150</td><td>150</td><td>150</td><td>100</td><td>n/a</td></tr>
+<tr>				<td>233</td><td>462</td><td>541</td><td>638</td><td>760</td><td>1110</td><td>1365</td><td>n/a</td></tr>
+<tr>				<td>~450</td><td>~950</td><td>~1100</td><td>~1300</td><td>~1550</td><td>~2200</td><td>~2700</td><td>~200K</td></tr>
+<tr>		<td>2.6</td><td>5.4</td><td>6.6</td><td>8.1</td><td>8.0</td><td>12.5</td><td>14.7</td><td>55.2</td></tr>
+<tr>		<td>2.7</td><td>4.8</td><td>6.0</td><td>8.3</td><td>8.2</td><td>13.7</td><td>15.1</td><td>65.0</td></tr>
+<tr>			<td>15</td><td>29</td><td>34</td><td>40</td><td>47</td><td>-</td><td>-</td><td>n/a</td></tr>
+</table>
+</td></tr>
+</table>
+
+<p align="center">---------------------------- <b> Update: 01/02/2014 - 06/02/2014</b>  ----------------------------</p>
+<a name="table1"></a> 
+<table align="center" border="1">
+<caption> Table 1: Comparison for dimensionality reductions approach on fully observed Y with various rank.</caption>
+<tr><td>
+<table align="center" border="1" bgcolor="white">
+<tr><td><b>Dataset</b></td> <td>$d$</td><td> $L$</td> </tr>
+<tr> <td>Autofood</td><td>9,382 </td><td>162 </td></tr>
+<tr> <td>Bibtex</td><td>1,836 </td><td>159 </td></tr>
+<tr> <td>Corel5k</td><td> 5608</td><td>260 </td></tr>
+<tr> <td>Delicious</td><td>500 </td><td>983 </td></tr>
+<tr> <td>Eurlex</td><td>5,000 </td><td>3,993 </td></tr>
+<tr> <td>Wiki</td><td>3,66,932 </td> <td>2,13,707</td></tr>
+</table><hr>
+<table align="center" border="1">
+<caption>corel5k:<b>baseline</b></caption>
+<tr><td></td><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr><td>20%</td>     <td>42.69</td> <td>33.07</td> <td>26.16</td></tr>
+<tr><td>40%</td>     <td>41.08</td> <td>33.04</td> <td>25.97</td></tr>
+<tr><td>60%</td>     <td>42.48</td><td>32.93</td> <td>25.93</td></tr>
+<tr><td>80%</td>     <td>41.08</td> <td>32.93</td> <td>25.93</td></tr>
+<tr><td>100%</td>     <td>42.28</td> <td>32.99</td> <td>26.21</td></tr>
+</table>
+</td>
+<td>
+<table align="center" border="1">
+<caption>autofood</caption>
+<tr><td><b>k/L</b></td><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr><td> 20%</td>     <td>89.47 </td> <td>86.84</td> <td>84.74</td></tr>
+<tr><td> 40%</td>     <td>92.11</td> <td>86.84</td> <td>85.26</td></tr>
+<tr><td> 60%</td>     <td>94.74</td><td>85.96</td> <td>84.21</td></tr>
+<tr><td> 80%</td>     <td>94.74</td> <td>86.84</td> <td>84.74</td></tr>
+<tr><td> 100%</td>     <td>94.74</td> <td> 86.84</td> <td>84.74</td></tr>
+</table>
+<hr>
+<table align="center" border="1">
+<caption>corel5k:<b>lsh</b></caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>41.08</td> <td>30.79</td> <td>23.01</td></tr>
+<tr>     <td>37.88</td> <td>30.59</td> <td>23.05</td></tr>
+<tr>     <td>42.28</td><td>31.13</td> <td>23.13</td></tr>
+<tr>     <td>37.27</td> <td>27.52</td> <td>21.00</td></tr>
+<tr>     <td>40.88</td> <td>26.72</td> <td>20.24</td></tr>
+</table>
+</td>
+<td>
+<table align="center" border="1">
+<caption>bibtex</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>57.85 </td> <td>33.07</td> <td>23.98</td></tr>
+<tr>     <td>59.64</td> <td>35.29</td> <td>25.72</td></tr>
+<tr>     <td>61.03</td><td>36.95</td> <td>26.91</td></tr>
+<tr>     <td>62.66</td> <td>37.65</td> <td>27.32</td></tr>
+<tr>     <td>63.33</td> <td>37.44</td> <td>27.13</td></tr>
+</table>
+<hr>
+<table align="center" border="1">
+<caption>eurlex: <b>baseline</b></caption>
+<tr><td><b>k</b></td><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr><td>250</td>     <td>52.71</td> <td> 41.17</td> <td>32.88</td></tr>
+<tr><td>500</td>     <td>57.78</td> <td> 44.62</td> <td>36.07</td></tr>
+</table>
+<table align="center" border="1">
+<caption>eurlex: <b>lsh</b></caption>
+<tr><td>250</td>     <td>51.21</td> <td> 38.26</td> <td>30.19</td></tr>
+<tr><td>500</td>     <td>53.18</td><td> 37.23</td> <td>29.03</td></tr>
+</table>
+</td>
+<td>
+<table align="center" border="1">
+<caption>delicious</caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>62.95</td> <td> 58.41</td> <td>53.98</td></tr>
+<tr>     <td>62.86</td> <td> 58.07</td> <td>53.91</td></tr>
+<tr>     <td>63.14</td> <td> 57.99</td> <td>53.83</td></tr>
+<tr>     <td>63.14</td> <td> 57.98</td> <td>53.82</td></tr>
+<tr>     <td>63.14</td> <td> 57.96</td> <td>53.82</td></tr>
+</table><hr>
+<table align="center" border="1">
+<caption>wiki: <b>baseline</b></caption>
+<tr><td><b>top-1</b></td> <td><b>top-3</b></td><td><b>top-5</b></td></tr>
+<tr>     <td>19.09</td> <td> 14.25</td> <td>11.40</td></tr>
+<tr>     <td>22.63</td> <td>17.43 </td> <td>14.11</td></tr>
+</table>
+<table align="center" border="1">
+<caption>wiki: <b>lsh</b></caption>
+<tr>     <td>17.03</td> <td>11.26</td> <td>8.67</td></tr>
+<tr>     <td>19.68</td> <td>12.35</td> <td>9.47</td></tr>
+</table>
+</td></tr>
+</table>
+<ul>
+	<li> Baseline performance in Table 1 are consistent with the results in Appendix D.2<sup>[4]</sup></li>
+	<li> LSH parameters for corel5k dataset: $\epsilon =  0.1$ and #Hashbits = 100. </li>
+	<li> LSH parameters for eurlex dataset: $\epsilon =  0.3$ and #Hashbits = 100. </li>
+	<li> LSH parameters for wiki dataset: $\epsilon =  0.85$ and #Hashbits = 150. </li>
+</ul>
+<b>Datasets</b>
+<ol>
+<li> Multi-label learning [<a href="http://mulan.sourceforge.net/datasets.html">link</a>] </li>
+<li> Image Tagging [<a href="http://lear.inrialpes.fr/people/guillaumin/data.php">link</a>]</li>
+<!--<li>Related Codes are <a href="http://cse.seu.edu.cn/people/zhangml/Resources.htm#codes">here</a> </li>-->
+</ol>
+<b>Multi-labeling task</b>: Goal is to accurately predict a label vector $y \in \{0,1\}^{L}$ for a given data point $x \in R^{d}$.
+<ul>
+	<li> First learn a low-rank linear model $Z \in R^{d \times L}$ such that $y^{pred} = Z^{T}x$.</li>
+	<li> For a matrix $Z$ with a known low rank k, consider a low-rank decomposition of the form $Z = WH^{T}$, where $W \in R^{d\times k}$ and $H\in R^{L\times k}$.</li>
+	<li> To ensure diversity within the predicted labels for a query $x$, compute the label vector $y^{pred} = HW^{T}x$ as the
+		<ol>
+			<li> nearest neighbors for $x$ in the LSH partitions of $Z$. </li>
+			<li> nearest neighbors for $W^{T}x$ in the LSH partitions of $H$. </li>
+		</ol>
+	</li>
+</ul>
+
+<b>References:</b>
+
+<ol>
+<li> Wsabie: Scaling up to large vocabulary image annotations, ICJAI, 2011 <a href="http://www.thespermwhale.com/jaseweston/papers/wsabie-ijcai.pdf">[pdf]</a></li>
+<li> Feature-aware Label Space Dimension Reduction for Multi-label Classification, NIPS, 2012 <a href="http://ntur.lib.ntu.edu.tw/retrieve/188489/02.pdf">[pdf]</a></li>
+<li> Active Query Driven by Uncertainty and Diversity for Incremental Multi-label Learning, ICDM, 2013 <a href="http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm13audi.pdf"> [pdf]</a> </li>
+<li> Large-scale Multi-label Learning with Missing Labels, arXiv, 2013 <a href="http://arxiv.org/pdf/1307.5101v3.pdf">[pdf]</a></li>
+<li> Multi-label learning with millions of labels, WWW, 2013 <a href="http://research.microsoft.com/en-us/um/people/manik/pubs/agrawal13.pdf">[pdf]</a></li>
+</ol>
+
+</div>
+</body></html>
+
