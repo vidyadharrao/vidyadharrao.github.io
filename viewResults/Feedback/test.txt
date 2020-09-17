@@ -1,1 +1,0 @@
-This is a sample feedback file. It reads contents from a text file and displays. You can edit the text using this text area and it will update the text file. Try editing the contents here and observe the changes.
