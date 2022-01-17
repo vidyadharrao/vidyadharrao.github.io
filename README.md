@@ -6,6 +6,6 @@
   - In non-academic research, my work spans across multi-disciplinary domains such as learning in cross-domain recommendation systems, 
 and using machine-vision in low-resource settings (data and compute) for industrial automation, and reasoning Personally Identifiable Information (PII) from unstructured data.
 
-- 🌱 I’m currently learning engineering challenges involved in building and deploying large-scale machine learning systems. 
+- 🌱 I’m currently working on engineering challenges involved in building and deploying large-scale machine learning systems. 
 - 💞️ I’m also looking to collaborate on applied research areas in machine learning with domain experts. 
 - 📫 For more information, inquiries or collaborations, check out my GitHub page: <a href=https://vidyadharrao.github.io/> Vidyadhar Rao </a>
