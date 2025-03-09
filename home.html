@@ -5,9 +5,9 @@
   <title>Vidyadhar Rao</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />  
   <base target="_parent">
- <style>
-    /* Add styles for the pop-up window */
-    #chatbot-popup {
+   <style>
+    /* Add styles for the chatbot window */
+    #chatbot-window {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -16,20 +16,27 @@
       border: 1px solid #ddd;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: none; /* Hide the pop-up by default */
+      width: 300px;
+      height: 400px;
+      display: none; /* Hide the chatbot window by default */
     }
-    #chatbot-popup.show {
-      display: block; /* Show the pop-up after 2 seconds */
+    #chatbot-window.show {
+      display: block; /* Show the chatbot window */
+    }
+    #chat-log {
+      overflow-y: scroll;
+      height: 300px;
     }
   </style>
 </head>
 
 <body>	
- <div id="chatbot-popup">
-    <h2>Talk to VR</h2>
+  <!-- Create the chatbot window -->
+  <div id="chatbot-window">
+    <h2>AI Chatbot</h2>
+    <div id="chat-log"></div>
     <input id="input-field" type="text" placeholder="Type a message...">
     <button id="send-btn">Send</button>
-    <div id="chat-log"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
@@ -37,12 +44,12 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/t5js@0.0.6/dist/t5.min.js"></script>
 
   <script>
-    // Get the pop-up window
-    const chatbotPopup = document.getElementById("chatbot-popup");
+    // Get the chatbot window
+    const chatbotWindow = document.getElementById("chatbot-window");
 
-    // Show the pop-up after 2 seconds
+    // Show the chatbot window after 2 seconds
     setTimeout(() => {
-      chatbotPopup.classList.add("show");
+      chatbotWindow.classList.add("show");
     }, 2000);
 
     // Initialize the T5 model
