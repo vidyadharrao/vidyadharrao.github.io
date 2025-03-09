@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #chat-window {
+      width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #input-field {
+      width: 80%;
+      height: 40px;
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+    }
+    #send-btn {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #send-btn:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Chatbot</h1>
+  <div id="chat-window">
+    <input id="input-field" type="text" placeholder="Type a message...">
+    <button id="send-btn">Send</button>
+    <div id="chat-log"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@huggingface/ transformers@3.5.1/dist/transformers.min.js"></script>
+  <script>
+    // Initialize the DistilBERT model
+    const model = new Transformers.DistilBertForSequenceClassification();
+
+    // Get the input field and send button
+    const inputField = document.getElementById("input-field");
+    const sendBtn = document.getElementById("send-btn");
+    const chatLog = document.getElementById("chat-log");
+
+    // Add event listener to the send button
+    sendBtn.addEventListener("click", async () => {
+      // Get the user input
+      const userInput = inputField.value.trim();
+
+      // Check if the input is not empty
+      if (userInput !== "") {
+        // Call the DistilBERT model to generate a response
+        const response = await model.generate(userInput, {
+          max_length: 100,
+          num_beams: 4,
+          early_stopping: true,
+        });
+
+        // Add the response to the chat log
+        chatLog.innerHTML += `<p>You: ${userInput}</p><p>AI: ${response}</p>`;
+
+        // Clear the input field
+        inputField.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
