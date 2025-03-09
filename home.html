@@ -25,13 +25,16 @@
 </head>
 
 <body>	
-  <!-- Create the pop-up window -->
-  <div id="chatbot-popup">
+ <div id="chatbot-popup">
     <h2>AI Chatbot</h2>
     <input id="input-field" type="text" placeholder="Type a message...">
     <button id="send-btn">Send</button>
     <div id="chat-log"></div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder@1.2.0/dist/universal-sentence-encoder.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/t5js@0.0.6/dist/t5.min.js"></script>
 
   <script>
     // Get the pop-up window
@@ -42,8 +45,8 @@
       chatbotPopup.classList.add("show");
     }, 2000);
 
-    // Initialize the DistilBERT model
-    const model = new Transformers.DistilBertForSequenceClassification();
+    // Initialize the T5 model
+    const model = await T5.load();
 
     // Get the input field and send button
     const inputField = document.getElementById("input-field");
@@ -57,7 +60,7 @@
 
       // Check if the input is not empty
       if (userInput !== "") {
-        // Call the DistilBERT model to generate a response
+        // Call the T5 model to generate a response
         const response = await model.generate(userInput, {
           max_length: 100,
           num_beams: 4,
@@ -69,6 +72,36 @@
 
         // Clear the input field
         inputField.value = "";
+
+        // Update the chat log scroll position
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }
+    });
+
+    // Add event listener to the input field
+    inputField.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
+        // Get the user input
+        const userInput = inputField.value.trim();
+
+        // Check if the input is not empty
+        if (userInput !== "") {
+          // Call the T5 model to generate a response
+          const response = await model.generate(userInput, {
+            max_length: 100,
+            num_beams: 4,
+            early_stopping: true,
+          });
+
+          // Add the response to the chat log
+          chatLog.innerHTML += `<p>You: ${userInput}</p><p>AI: ${response}</p>`;
+
+          // Clear the input field
+          inputField.value = "";
+
+          // Update the chat log scroll position
+          chatLog.scrollTop = chatLog.scrollHeight;
+        }
       }
     });
   </script>
