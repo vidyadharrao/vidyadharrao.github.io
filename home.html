@@ -5,13 +5,12 @@
   <title>Vidyadhar Rao</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />  
   <base target="_parent">
-<style>
+  <style>
     /* Add styles for the pop-up window */
     #chatbot-popup {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      bottom: 20px;
+      right: 20px;
       background-color: #fff;
       padding: 20px;
       border: 1px solid #ddd;
@@ -20,15 +19,12 @@
       display: none; /* Hide the pop-up by default */
     }
     #chatbot-popup.show {
-      display: block; /* Show the pop-up when the button is clicked */
+      display: block; /* Show the pop-up after 2 seconds */
     }
   </style>
 </head>
 
 <body>	
-<!-- Add a button to trigger the pop-up -->
-  <button id="open-chatbot-btn">Talk to me!</button>
-
   <!-- Create the pop-up window -->
   <div id="chatbot-popup">
     <h2>AI Chatbot</h2>
@@ -38,14 +34,13 @@
   </div>
 
   <script>
-    // Get the pop-up window and the button
+    // Get the pop-up window
     const chatbotPopup = document.getElementById("chatbot-popup");
-    const openChatbotBtn = document.getElementById("open-chatbot-btn");
 
-    // Add event listener to the button
-    openChatbotBtn.addEventListener("click", () => {
+    // Show the pop-up after 2 seconds
+    setTimeout(() => {
       chatbotPopup.classList.add("show");
-    });
+    }, 2000);
 
     // Initialize the DistilBERT model
     const model = new Transformers.DistilBertForSequenceClassification();
