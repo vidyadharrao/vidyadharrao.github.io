@@ -31,7 +31,7 @@
 </head>
 
 <body>	
-  <!-- Create the chatbot window -->
+<!-- Create the chatbot window -->
   <div id="chatbot-window">
     <h2>AI Chatbot</h2>
     <div id="chat-log"></div>
@@ -44,50 +44,23 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/t5js@0.0.6/dist/t5.min.js"></script>
 
   <script>
-    // Get the chatbot window
-    const chatbotWindow = document.getElementById("chatbot-window");
+    async function initChatbot() {
+      // Initialize the T5 model
+      const model = await T5.load();
 
-    // Show the chatbot window after 2 seconds
-    setTimeout(() => {
+      // Get the chatbot window
+      const chatbotWindow = document.getElementById("chatbot-window");
+
+      // Show the chatbot window
       chatbotWindow.classList.add("show");
-    }, 2000);
 
-    // Initialize the T5 model
-    const model = await T5.load();
+      // Get the input field and send button
+      const inputField = document.getElementById("input-field");
+      const sendBtn = document.getElementById("send-btn");
+      const chatLog = document.getElementById("chat-log");
 
-    // Get the input field and send button
-    const inputField = document.getElementById("input-field");
-    const sendBtn = document.getElementById("send-btn");
-    const chatLog = document.getElementById("chat-log");
-
-    // Add event listener to the send button
-    sendBtn.addEventListener("click", async () => {
-      // Get the user input
-      const userInput = inputField.value.trim();
-
-      // Check if the input is not empty
-      if (userInput !== "") {
-        // Call the T5 model to generate a response
-        const response = await model.generate(userInput, {
-          max_length: 100,
-          num_beams: 4,
-          early_stopping: true,
-        });
-
-        // Add the response to the chat log
-        chatLog.innerHTML += `<p>You: ${userInput}</p><p>AI: ${response}</p>`;
-
-        // Clear the input field
-        inputField.value = "";
-
-        // Update the chat log scroll position
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }
-    });
-
-    // Add event listener to the input field
-    inputField.addEventListener("keypress", async (e) => {
-      if (e.key === "Enter") {
+      // Add event listener to the send button
+      sendBtn.addEventListener("click", async () => {
         // Get the user input
         const userInput = inputField.value.trim();
 
@@ -109,8 +82,37 @@
           // Update the chat log scroll position
           chatLog.scrollTop = chatLog.scrollHeight;
         }
-      }
-    });
+      });
+
+      // Add event listener to the input field
+      inputField.addEventListener("keypress", async (e) => {
+        if (e.key === "Enter") {
+          // Get the user input
+          const userInput = inputField.value.trim();
+
+          // Check if the input is not empty
+          if (userInput !== "") {
+            // Call the T5 model to generate a response
+            const response = await model.generate(userInput, {
+              max_length: 100,
+              num_beams: 4,
+              early_stopping: true,
+            });
+
+            // Add the response to the chat log
+            chatLog.innerHTML += `<p>You: ${userInput}</p><p>AI: ${response}</p>`;
+
+            // Clear the input field
+            inputField.value = "";
+
+            // Update the chat log scroll position
+            chatLog.scrollTop = chatLog.scrollHeight;
+          }
+        }
+      });
+    }
+
+    initChatbot();
   </script>
 <table width="90%" align="center">
  <tbody>
