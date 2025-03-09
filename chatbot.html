@@ -45,18 +45,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder@1.2.0/dist/universal-sentence-encoder.min.js"></script>
-  
   <script>
     // Import the Hugging Face Transformers library
-    import { Transformers } from '@huggingface/transformers';
-    
+    import { Transformers } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.18.0/dist/transformers.min.js';
+
     // Load the pre-trained chatbot model
-    const model = await transformers.loadModel('t5-small');
+    async function loadModel() {
+      return await Transformers.loadModel('t5-small');
+    }
 
     // Get the input field and send button
     const inputField = document.getElementById('input-field');
     const sendBtn = document.getElementById('send-btn');
     const chatLog = document.getElementById('chat-log');
+
+    // Load the model
+    let model = await loadModel();
 
     // Add event listener to the send button
     sendBtn.addEventListener('click', async () => {
