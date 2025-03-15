@@ -138,21 +138,12 @@
 </table>
 
 <p id="copyright" style="font-size: 12px; text-align: center; color: #666;"></p>
-
 <script>
   const currentYear = new Date().getFullYear();
-  document.getElementById("copyright").innerHTML = `&copy; ${currentYear} Vidyadhar Rao. All rights reserved.`;
+  const startYear = new Date(2009)
+  document.getElementById("copyright").innerHTML = `Copyright &copy; ${startYear}-{currentYear} Vidyadhar Rao. All rights reserved.`;
 </script>
 	
 </body>
-
-<!--
-	<frameset rows="140,*" frameborder="0" framespacing="0">
-
-	<frame name="top" src="header.html" frameborder="0" framespacing="0" scrolling="no">
-	<frame name="body" src="home.html" frameborder="0" framespacing="0" scrolling="auto">
-
-</frameset>
--->
 	
 </html>
