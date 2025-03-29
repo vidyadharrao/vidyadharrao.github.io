@@ -47,10 +47,11 @@
     <div id="captcha-modal">
         <div id="captcha-modal-content">
             <h2>Captcha Verification</h2>
-            <img id="captcha-image" src="" alt="Captcha Image">
+            <canvas id="captcha-canvas" width="200" height="50"></canvas>
             <input id="captcha-input" type="text" placeholder="Enter Captcha Code">
             <button id="captcha-submit">Submit</button>
             <p id="captcha-error" style="color: red;"></p>
+            <button id="captcha-refresh">Refresh</button>
         </div>
     </div>
     <div id="content" style="display: none;">
@@ -59,12 +60,41 @@
     </div>
 
     <script>
-        // Generate a random captcha code
-        let captchaCode = Math.floor(100000 + Math.random() * 900000);
-        let captchaImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x50&data=${captchaCode}`;
+        // Get the canvas element
+        let canvas = document.getElementById('captcha-canvas');
+        let ctx = canvas.getContext('2d');
 
-        // Set the captcha image source
-        document.getElementById('captcha-image').src = captchaImageUrl;
+        // Generate a random captcha code
+        let captchaCode = generateCaptchaCode();
+        drawCaptcha(captchaCode);
+
+        // Function to generate a random captcha code
+        function generateCaptchaCode() {
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                let char = Math.floor(Math.random() * 10).toString();
+                code += char;
+            }
+            return code;
+        }
+
+        // Function to draw the captcha code on the canvas
+        function drawCaptcha(code) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'black';
+            ctx.fillText(code, canvas.width / 2, canvas.height / 2);
+
+            // Add some noise to the canvas
+            for (let i = 0; i < 100; i++) {
+                let x = Math.floor(Math.random() * canvas.width);
+                let y = Math.floor(Math.random() * canvas.height);
+                ctx.fillStyle = 'black';
+                ctx.fillRect(x, y, 1, 1);
+            }
+        }
 
         // Show the captcha modal
         document.getElementById('captcha-modal').classList.add('show');
@@ -72,6 +102,7 @@
         // Get the captcha input and submit button
         let captchaInput = document.getElementById('captcha-input');
         let captchaSubmit = document.getElementById('captcha-submit');
+        let captchaRefresh = document.getElementById('captcha-refresh');
 
         // Add an event listener to the submit button
         captchaSubmit.addEventListener('click', () => {
@@ -79,7 +110,7 @@
             let userInput = captchaInput.value;
 
             // Check if the user's input matches the captcha code
-            if (userInput === captchaCode.toString()) {
+            if (userInput === captchaCode) {
                 // Hide the captcha modal
                 document.getElementById('captcha-modal').classList.remove('show');
 
@@ -89,6 +120,15 @@
                 // Display an error message
                 document.getElementById('captcha-error').innerText = 'Invalid captcha code. Please try again.';
             }
+        });
+
+        // Add an event listener to the refresh button
+        captchaRefresh.addEventListener('click', () => {
+            // Generate a new captcha code
+            captchaCode = generateCaptchaCode();
+            drawCaptcha(captchaCode);
+            captchaInput.value = '';
+            document.getElementById('captcha-error').innerText = '';
         });
     </script>
 </body>
