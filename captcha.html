@@ -167,7 +167,7 @@
             drawCaptcha(captchaCode);
             captchaInput.value = '';
             document.getElementById('captcha-error').innerText = '';
-            timeRemaining = 30;
+            timeRemaining = 15;
             document.getElementById('time-remaining').innerText = timeRemaining;
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
