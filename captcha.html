@@ -82,7 +82,7 @@
         // Function to draw the captcha code on the canvas
         function drawCaptcha(code) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.font = '24px Arial';
+            ctx.font = '24px Comic Sans MS';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = 'black';
@@ -99,9 +99,10 @@
             for (let i = 0; i < code.length; i++) {
                 let x = 20 + (i * 30);
                 let y = 25 + Math.sin(i * 0.5) * 10;
+                let angle = Math.random() * 0.5 - 0.25;
                 ctx.save();
                 ctx.translate(x, y);
-                ctx.rotate(Math.random() * 0.1);
+                ctx.rotate(angle);
                 ctx.fillText(code[i], 0, 0);
                 ctx.restore();
             }
