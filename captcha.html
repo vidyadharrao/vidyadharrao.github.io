@@ -70,9 +70,10 @@
 
         // Function to generate a random captcha code
         function generateCaptchaCode() {
+            let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let code = '';
             for (let i = 0; i < 6; i++) {
-                let char = Math.floor(Math.random() * 10).toString();
+                let char = chars.charAt(Math.floor(Math.random() * chars.length));
                 code += char;
             }
             return code;
@@ -85,7 +86,6 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = 'black';
-            ctx.fillText(code, canvas.width / 2, canvas.height / 2);
 
             // Add some noise to the canvas
             for (let i = 0; i < 100; i++) {
@@ -93,6 +93,17 @@
                 let y = Math.floor(Math.random() * canvas.height);
                 ctx.fillStyle = 'black';
                 ctx.fillRect(x, y, 1, 1);
+            }
+
+            // Draw the captcha code with some distortion
+            for (let i = 0; i < code.length; i++) {
+                let x = 20 + (i * 30);
+                let y = 25 + (Math.random() * 10);
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(Math.random() * 0.1);
+                ctx.fillText(code[i], 0, 0);
+                ctx.restore();
             }
         }
 
@@ -110,7 +121,7 @@
             let userInput = captchaInput.value;
 
             // Check if the user's input matches the captcha code
-            if (userInput === captchaCode) {
+            if (userInput.toLowerCase() === captchaCode.toLowerCase()) {
                 // Hide the captcha modal
                 document.getElementById('captcha-modal').classList.remove('show');
 
