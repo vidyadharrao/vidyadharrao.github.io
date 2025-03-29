@@ -11,7 +11,12 @@ body {
 	background-color: white; 
 	padding: 0px;
 	height: 100%;
+	-moz-user-select: none;
+    	-webkit-user-select: none;
+    	-ms-user-select: none;
+    	user-select: none;
 }
+
 
 a {
 	color: rgb(139,125,107);
