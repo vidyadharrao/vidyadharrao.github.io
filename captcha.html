@@ -52,7 +52,7 @@
             <button id="captcha-submit">Submit</button>
             <p id="captcha-error" style="color: red;"></p>
             <button id="captcha-refresh">Refresh</button>
-            <p id="timer">Time remaining: <span id="time-remaining">15</span> seconds</p>
+            <p id="timer">Time remaining: <span id="time-remaining">7</span> seconds</p>
         </div>
     </div>
     <div id="content" style="display: none;">
@@ -115,7 +115,7 @@
         let captchaInput = document.getElementById('captcha-input');
         let captchaSubmit = document.getElementById('captcha-submit');
         let captchaRefresh = document.getElementById('captcha-refresh');
-        let timeRemaining = 15;
+        let timeRemaining = 7;
         let timerInterval;
 
         // Start the timer
@@ -128,7 +128,7 @@
                 document.getElementById('captcha-error').innerText = 'Time\'s up! Please refresh the captcha.';
                 captchaCode = generateCaptchaCode();
                 drawCaptcha(captchaCode);
-                timeRemaining = 15;
+                timeRemaining = 7;
                 timerInterval = setInterval(() => {
                     timeRemaining--;
                     document.getElementById('time-remaining').innerText = timeRemaining;
@@ -167,7 +167,7 @@
             drawCaptcha(captchaCode);
             captchaInput.value = '';
             document.getElementById('captcha-error').innerText = '';
-            timeRemaining = 15;
+            timeRemaining = 7;
             document.getElementById('time-remaining').innerText = timeRemaining;
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
