@@ -19,6 +19,19 @@
 
 <body>
 
+    <div id="captcha-modal">
+        <div id="captcha-modal-content">
+            <h2>Captcha Verification</h2>
+            <canvas id="captcha-canvas" width="200" height="50"></canvas>
+            <input id="captcha-input" type="text" placeholder="Enter Captcha Code">
+            <button id="captcha-submit">Submit</button>
+            <p id="captcha-error" style="color: red;"></p>
+            <button id="captcha-refresh">Refresh</button>
+        </div>
+    </div>
+
+<div id="content" style="display: none;">
+
  <table align="center" border="0" cellpadding="0" cellspacing="0" width=100%>
   <tr>
    <td align="center">
@@ -144,7 +157,9 @@
   const startYear = new Date("2009").getFullYear();
   document.getElementById("copyright").innerHTML = `Copyright &copy; ${startYear}-${currentYear} Vidyadhar Rao. All Rights Reserved.`;
 </script>
+
+</div>
+<script src="./js/captcha.js"></script>
 	
 </body>
-	
 </html>
