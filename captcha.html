@@ -52,7 +52,6 @@
             <button id="captcha-submit">Submit</button>
             <p id="captcha-error" style="color: red;"></p>
             <button id="captcha-refresh">Refresh</button>
-            <p id="timer">Time remaining: <span id="time-remaining">7</span> seconds</p>
         </div>
     </div>
     <div id="content" style="display: none;">
@@ -99,7 +98,7 @@
             // Draw the captcha code with some distortion
             for (let i = 0; i < code.length; i++) {
                 let x = 20 + (i * 30);
-                let y = 25 + (Math.random() * 10);
+                let y = 25 + Math.sin(i * 0.5) * 10;
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.rotate(Math.random() * 0.1);
@@ -115,29 +114,6 @@
         let captchaInput = document.getElementById('captcha-input');
         let captchaSubmit = document.getElementById('captcha-submit');
         let captchaRefresh = document.getElementById('captcha-refresh');
-        let timeRemaining = 7;
-        let timerInterval;
-
-        // Start the timer
-        timerInterval = setInterval(() => {
-            timeRemaining--;
-            document.getElementById('time-remaining').innerText = timeRemaining;
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                captchaInput.value = '';
-                document.getElementById('captcha-error').innerText = 'Time\'s up! Please refresh the captcha.';
-                captchaCode = generateCaptchaCode();
-                drawCaptcha(captchaCode);
-                timeRemaining = 7;
-                timerInterval = setInterval(() => {
-                    timeRemaining--;
-                    document.getElementById('time-remaining').innerText = timeRemaining;
-                    if (timeRemaining <= 0) {
-                        clearInterval(timerInterval);
-                    }
-                }, 1000);
-            }
-        }, 1000);
 
         // Add an event listener to the submit button
         captchaSubmit.addEventListener('click', () => {
@@ -151,9 +127,6 @@
 
                 // Show the content
                 document.getElementById('content').style.display = 'block';
-
-                // Stop the timer
-                clearInterval(timerInterval);
             } else {
                 // Display an error message
                 document.getElementById('captcha-error').innerText = 'Invalid captcha code. Please try again.';
@@ -167,16 +140,6 @@
             drawCaptcha(captchaCode);
             captchaInput.value = '';
             document.getElementById('captcha-error').innerText = '';
-            timeRemaining = 7;
-            document.getElementById('time-remaining').innerText = timeRemaining;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                timeRemaining--;
-                document.getElementById('time-remaining').innerText = timeRemaining;
-                if (timeRemaining <= 0) {
-                    clearInterval(timerInterval);
-                }
-            }, 1000);
         });
     </script>
 </body>
