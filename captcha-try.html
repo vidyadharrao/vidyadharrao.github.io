@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Page</title>
+    <style>
+        #captcha-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #captcha-modal.show {
+            display: flex;
+        }
+
+        #captcha-modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #captcha-modal-content h2 {
+            margin-top: 0;
+        }
+
+        #captcha-modal-content button {
+            margin-top: 20px;
+        }
+
+        #captcha-image {
+            width: 200px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="captcha-modal">
+        <div id="captcha-modal-content">
+            <h2>Captcha Verification</h2>
+            <img id="captcha-image" src="" alt="Captcha Image">
+            <input id="captcha-input" type="text" placeholder="Enter Captcha Code">
+            <button id="captcha-submit">Submit</button>
+            <p id="captcha-error" style="color: red;"></p>
+        </div>
+    </div>
+    <div id="content" style="display: none;">
+        <h1>Welcome to our website!</h1>
+        <p>This is the content of our website.</p>
+    </div>
+
+    <script>
+        // Generate a random captcha code
+        let captchaCode = Math.floor(100000 + Math.random() * 900000);
+        let captchaImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x50&data=${captchaCode}`;
+
+        // Set the captcha image source
+        document.getElementById('captcha-image').src = captchaImageUrl;
+
+        // Show the captcha modal
+        document.getElementById('captcha-modal').classList.add('show');
+
+        // Get the captcha input and submit button
+        let captchaInput = document.getElementById('captcha-input');
+        let captchaSubmit = document.getElementById('captcha-submit');
+
+        // Add an event listener to the submit button
+        captchaSubmit.addEventListener('click', () => {
+            // Get the user's input
+            let userInput = captchaInput.value;
+
+            // Check if the user's input matches the captcha code
+            if (userInput === captchaCode.toString()) {
+                // Hide the captcha modal
+                document.getElementById('captcha-modal').classList.remove('show');
+
+                // Show the content
+                document.getElementById('content').style.display = 'block';
+            } else {
+                // Display an error message
+                document.getElementById('captcha-error').innerText = 'Invalid captcha code. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
