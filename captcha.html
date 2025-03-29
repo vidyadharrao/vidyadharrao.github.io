@@ -125,7 +125,7 @@
             if (timeRemaining <= 0) {
                 clearInterval(timerInterval);
                 captchaInput.value = '';
-                document.getElementById('captcha-error').innerText = 'Time's up! Please refresh the captcha.';
+                document.getElementById('captcha-error').innerText = 'Time\'s up! Please refresh the captcha.';
                 captchaCode = generateCaptchaCode();
                 drawCaptcha(captchaCode);
                 timeRemaining = 30;
@@ -134,18 +134,6 @@
                     document.getElementById('time-remaining').innerText = timeRemaining;
                     if (timeRemaining <= 0) {
                         clearInterval(timerInterval);
-                        captchaInput.value = '';
-                        document.getElementById('captcha-error').innerText = 'Time's up! Please refresh the captcha.';
-                        captchaCode = generateCaptchaCode();
-                        drawCaptcha(captchaCode);
-                        timeRemaining = 30;
-                        timerInterval = setInterval(() => {
-                            timeRemaining--;
-                            document.getElementById('time-remaining').innerText = timeRemaining;
-                            if (timeRemaining <= 0) {
-                                clearInterval(timerInterval);
-                            }
-                        }, 1000);
                     }
                 }, 1000);
             }
@@ -187,18 +175,6 @@
                 document.getElementById('time-remaining').innerText = timeRemaining;
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
-                    captchaInput.value = '';
-                    document.getElementById('captcha-error').innerText = 'Time's up! Please refresh the captcha.';
-                    captchaCode = generateCaptchaCode();
-                    drawCaptcha(captchaCode);
-                    timeRemaining = 30;
-                    timerInterval = setInterval(() => {
-                        timeRemaining--;
-                        document.getElementById('time-remaining').innerText = timeRemaining;
-                        if (timeRemaining <= 0) {
-                            clearInterval(timerInterval);
-                        }
-                    }, 1000);
                 }
             }, 1000);
         });
