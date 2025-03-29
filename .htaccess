@@ -1,4 +1,7 @@
+# Allow access to CSS and JS files only from your website
 <FilesMatch "\.(css|js)$">
-    Order Allow,Deny
+    Order Deny,Allow
     Deny from all
+    SetEnvIfNoCase Referer ^https?://(www\.)?vidyadharrao\.github\.io [allow]
+    Allow from env=allow
 </FilesMatch>
