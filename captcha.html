@@ -87,11 +87,23 @@
             ctx.fillStyle = 'black';
 
             // Add some noise to the canvas
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 500; i++) {
                 let x = Math.floor(Math.random() * canvas.width);
                 let y = Math.floor(Math.random() * canvas.height);
                 ctx.fillStyle = 'black';
                 ctx.fillRect(x, y, 1, 1);
+            }
+
+            // Draw some random lines
+            for (let i = 0; i < 10; i++) {
+                let x1 = Math.floor(Math.random() * canvas.width);
+                let y1 = Math.floor(Math.random() * canvas.height);
+                let x2 = Math.floor(Math.random() * canvas.width);
+                let y2 = Math.floor(Math.random() * canvas.height);
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
             }
 
             // Draw the captcha code with some distortion
