@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selfie Captcha</title>
-    <style>
-        #content {
-            display: none;
-        }
-    </style>
+    <title>IP Logger</title>
 </head>
 <body>
-    <h1>Take a Selfie to Continue</h1>
-    <button id="capture-button">Capture</button>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <div id="content">
-        <!-- Your content here -->
-        <h2>Welcome to our website!</h2>
-        <p>Thank you for taking the selfie captcha.</p>
-    </div>
-
-    <script src="capture.js"></script>
+    <script>
+        navigator.geolocation.getCurrentPosition(position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            console.log(`Your Location: ${latitude}, ${longitude}`);
+        }, error => {
+            console.error('Error getting location:', error);
+        });
+    </script>
 </body>
 </html>
