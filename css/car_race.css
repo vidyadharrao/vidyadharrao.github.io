@@ -1,0 +1,44 @@
+.game-container {
+        width: 800px;
+        height: 600px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 20px;
+}
+
+.road {
+        width: 100%;
+        height: 100%;
+        background-color: #ccc;
+        border: 1px solid #666;
+}
+
+.lane {
+        width: 20%;
+        height: 100%;
+        background-color: #666;
+        border: 1px solid #333;
+        float: left;
+}
+
+.car {
+        width: 50px;
+        height: 50px;
+        background-color: #ff69b4;
+        border: 1px solid #666;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+.obstacles {
+        width: 50px;
+        height: 50px;
+        background-color: #666;
+        border: 1px solid #333;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
