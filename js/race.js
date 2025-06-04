@@ -1,85 +1,54 @@
 // Game variables
-var car = document.getElementById('car');
-var obstacles = document.getElementById('obstacles');
-var road = document.getElementById('road');
-var lanes = document.querySelectorAll('.lane');
-var carX = 400;
-var carY = 300;
-var carSpeed = 5;
-var obstacleInterval = 1000;
-var obstacleWidth = 50;
-var obstacleHeight = 50;
-var score = 0;
-var level = 1;
+var playerCar = document.getElementById('player-car');
+var computerCar = document.getElementById('computer-car');
+var track = document.getElementById('lane');
+var trackMap = document.getElementById('track-map');
+var score = document.getElementById('score');
+var trackLength = 800;
+var playerSpeed = 5;
+var computerSpeed = 5;
+var playerX = 0;
+var computerX = trackLength;
 var gameInterval = null;
 
 // Game function
 function game() {
-        // Update car position
-        car.style.left = carX + 'px';
-        car.style.top = carY + 'px';
+        // Update player car position
+        playerCar.style.left = playerX + 'px';
 
-        // Check for collisions with obstacles
-        obstacles.innerHTML = '';
-        for (var i = 0; i < lanes.length; i++) {
-                var lane = lanes[i];
-                var obstacle = document.createElement('div');
-                obstacle.className = 'obstacle';
-                obstacle.style.top = lane.offsetTop + 'px';
-                obstacle.style.left = lane.offsetLeft + 'px';
-                obstacles.appendChild(obstacle);
-        }
+        // Update computer car position
+        computerCar.style.left = computerX + 'px';
 
-        // Move obstacles
-        obstacles.innerHTML = '';
-        for (var i = 0; i < lanes.length; i++) {
-                var lane = lanes[i];
-                var obstacle = document.createElement('div');
-                obstacle.className = 'obstacle';
-                obstacle.style.top = lane.offsetTop + 'px';
-                obstacle.style.left = lane.offsetLeft + 'px';
-                obstacles.appendChild(obstacle);
-        }
-
-        // Check for win condition
-        if (carY > 550) {
+        // Check for collisions with track end
+        if (playerX >= trackLength) {
                 alert('You win!');
                 clearInterval(gameInterval);
         }
 
         // Update game state
-        carY += carSpeed;
-        score++;
-        document.getElementById('score').innerHTML = 'Score: ' + score;
+        playerX += playerSpeed;
+        computerX -= computerSpeed;
 
-        // Check for level completion
-        if (score % 100 === 0) {
-                level++;
-                obstacleInterval -= 50;
-                carSpeed += 0.5;
+        // Update track map
+        trackMap.innerHTML = '';
+        for (var i = 0; i < trackLength; i++) {
+                var trackSegment = document.createElement('div');
+                trackSegment.className = 'track-segment';
+                trackSegment.style.width = '10px';
+                trackSegment.style.height = '100px';
+                trackSegment.style.top = '0px';
+                trackSegment.style.left = i + 'px';
+                trackMap.appendChild(trackSegment);
         }
+
+        // Update score
+        score.innerHTML = 'Score: ' + Math.floor((playerX / trackLength) * 100);
 
         // Update game interval
         if (!gameInterval) {
-                gameInterval = setInterval(game, obstacleInterval);
+                gameInterval = setInterval(game, 16);
         }
 }
-
-// Start game
-document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowUp') {
-                carY -= 5;
-        }
-        if (event.key === 'ArrowDown') {
-                carY += 5;
-        }
-        if (event.key === 'ArrowLeft') {
-                carX -= 5;
-        }
-        if (event.key === 'ArrowRight') {
-                carX += 5;
-        }
-});
 
 // Start game
 game();
