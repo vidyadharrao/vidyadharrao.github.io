@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Car Racing Game</title>
-        <link rel="stylesheet" href="css/car_race.css">
+        <title>Moto F1 Racing Game</title>
+        <link rel="stylesheet" href="css/race.css">
 </head>
 <body>
-        <h1>Car Racing Game</h1>
+        <h1>Moto F1 Racing Game</h1>
         <div class="game-container">
-                <div class="road">
-                        <div class="lane" id="lane1"></div>
-                        <div class="lane" id="lane2"></div>
-                        <div class="lane" id="lane3"></div>
-                        <div class="lane" id="lane4"></div>
+                <div class="track">
+                        <div class="lane" id="lane"></div>
                 </div>
-                <div class="car" id="car"></div>
-                <div class="obstacles" id="obstacles"></div>
+                <div class="cars">
+                        <div class="car" id="player-car"></div>
+                        <div class="car" id="computer-car"></div>
+                </div>
+                <div class="track-map" id="track-map"></div>
                 <div class="score" id="score">Score: 0</div>
         </div>
-        <script src="js/car_race.js"></script>
+        <script src="js/race.js"></script>
 </body>
 </html>
