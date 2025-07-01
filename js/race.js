@@ -69,7 +69,7 @@ function createEnemies() {
       enemy.y = i * 180;
       enemy.x = Math.random() * 330 + 25;
       enemy.style.left = enemy.x + "px";
-      enemy.style.backgroundImage = `url('enemycar${sinn}.png')`;
+      enemy.style.backgroundImage = `url('../images/enemycar${sinn}.png')`;
   }
 }
 
