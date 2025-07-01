@@ -6,8 +6,92 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0" />	
 </head>
-
-<script src="css/race.css"></script>
+<style>
+    .hide {
+        display: none;
+    }
+    
+    .car {
+        background: url("../images/enemycar4.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 70px;
+        width: 50px;
+        position: absolute;
+        top: 500px;
+        left: 100px;
+    }
+    
+    .gamearea {
+        margin: auto;
+        width: 405px;
+        height: 100vh;
+        background-color: #393737;
+        position: relative;
+        border-left: 5px dashed white;
+        border-right: 5px dashed white;
+    }
+    
+    .roadstrip {
+        height: 85px;
+        width: 6px;
+        background-color: aliceblue;
+        position: absolute;
+        left: 197px;
+    }
+    
+    .enemy {
+        height: 70px;
+        width: 50px;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 400px;
+    }
+    
+    body {
+        overflow: hidden;
+        width: 100%;
+        height: 97vh;
+        background: url("../images/maincar.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        /* above statement is to hide both vertical and horizantal scrollbar */
+    }
+    
+    .startscreen {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: auto;
+        height: 65px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 220px;
+        background-color: #212324;
+        color: white;
+        border-radius: 20px;
+        padding-top: 11px;
+        font-size: 33px;
+        box-shadow: 0px 6px 10px #c35357;
+        position: relative;
+        top: 200px;
+        cursor: pointer;
+    }
+    
+    .score {
+        height: 44px;
+        width: 135px;
+        background-color: rgb(69, 69, 78);
+        color: white;
+        font-size: 30px;
+        padding-top: 4px;
+        padding-left: 8px;
+        position: absolute;
+        border: 2px solid white;
+        border-radius: 11px;
+        box-shadow: 0 5px 5px red;
+    }
+</style>
 
 <body>
     <div class="score hide">Score :</div>
@@ -22,9 +106,9 @@
     let speed = 4;
     let speed1 = 5;
     let score1 = 0;
-    let music = new Audio("music.mp3");
-    let crash = new Audio("crash.wav");
-    let move = new Audio("move1.mp3");
+    let music = new Audio("../audio/music.mp3");
+    let crash = new Audio("../audio/crash.wav");
+    let move = new Audio("../audio/move.mp3");
     document.addEventListener("keydown", keydown);
     document.addEventListener("keyup", keyup);
     startscreen.addEventListener("click", start);
@@ -87,7 +171,7 @@
             enemy.y = i * 180;
             enemy.x = Math.random() * 330 + 25;
             enemy.style.left = enemy.x + "px";
-            enemy.style.backgroundImage = `url('enemycar${sinn}.png')`;
+            enemy.style.backgroundImage = `url('../images/enemycar${sinn}.png')`;
         }
     }
 
