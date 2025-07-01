@@ -6,7 +6,7 @@ let speed1 = 5;
 let score1 = 0;
 let music = new Audio("../audio/music.mp3");
 let crash = new Audio("../audio/crash.wav");
-let move = new Audio("../audio/move1.mp3");
+let move = new Audio("../audio/move.mp3");
 document.addEventListener("keydown", keydown);
 document.addEventListener("keyup", keyup);
 startscreen.addEventListener("click", start);
